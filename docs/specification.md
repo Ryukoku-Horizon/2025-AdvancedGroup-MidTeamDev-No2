@@ -68,6 +68,7 @@ AIの診断ページ”/diagnosis”
 プロフィール編集ページ”/manage/:id/editProfile”
 
 ![UI.png](./UI.png)
+![UI2.png](./UI2.png)
 
 ## データベース
 
