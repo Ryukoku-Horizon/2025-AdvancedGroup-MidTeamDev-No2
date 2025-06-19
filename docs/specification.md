@@ -99,10 +99,18 @@ AIの診断ページ”/diagnosis”
 - content
 - circleId
 
+## ユーザー種別と権限
+
+| ユーザー種別 | 権限 |
+| --- | --- |
+| 一般ユーザー（閲覧者） | サークル検索、診断、ページ閲覧 |
+| サークル管理者 | 自サークルの紹介・プロフィール編集 |
+| 管理者（システム側） | 申請の承認・削除、全データの閲覧・管理 |
+
 ## 使用技術
 
 フロントエンド
-
+s
 react
 gatsby
 
@@ -111,3 +119,199 @@ gatsby
 firebase
 
 supabase
+
+## プロジェクトフォルダ構成
+
+- /app（フロントエンドreact/gatsbyプロジェクトフォルダ）
+    - /src（ソースコード）
+- /backend（バックエンドsupabase edge関数）
+- /docs（仕様書保管）
+
+# API仕様
+
+### エンドポイント
+
+- POST `/functions/v1/auth_circle`
+
+### 概要
+
+ログイン処理を行う
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true,
+  token: {jwtトークン}
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"パスワードが無効です"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/approve`
+
+### 概要
+
+申請を承認する
+
+申請者にメールを送る
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"メールの送信に失敗しました"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/deny_request`
+
+### 概要
+
+申請を拒否する
+
+申請者にメールを送る
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"メールの送信に失敗しました"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/get_pending`
+
+### 概要
+
+Pendingテーブルからデータを取得する
+
+### リクエスト
+
+- match（条件）
+    - 例：{”id”:1}（idが1のレコード取得）
+- select（取得するフィールド）
+    - 例：{”name”}（nameフィールドを取得）
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true,
+  data:{pendingデータ}
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"フィールドが存在しません"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/insert_pending`
+
+### 概要
+
+Pendingテーブルにデータを挿入する
+
+### リクエスト
+
+- pendingData（{id,name,email,activeDate,detail,location}）
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"nameフィールドがありません"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/get_circle`
+
+### 概要
+
+Circleテーブルからデータを取得する
+
+### リクエスト
+
+- match（条件）
+    - 例：{”id”:1}（idが1のレコード取得）
+- select（取得するフィールド）
+    - 例：{”name”}（nameフィールドを取得）
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true,
+  data:{circleデータ}
+}
+```
+
+失敗時
+
+```json
+{
+	success:false,
+	error:"条件（match）が無効です"
+}
+```
