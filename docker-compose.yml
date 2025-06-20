@@ -4,11 +4,11 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./app/Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./app:/app
-      - /app/node_modules
+      - /app/node_modules  # 重要: コンテナの node_modules を上書きしない
     environment:
       - NODE_ENV=development
