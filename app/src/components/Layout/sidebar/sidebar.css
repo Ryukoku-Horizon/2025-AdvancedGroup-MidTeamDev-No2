@@ -1,0 +1,42 @@
+.slide-overlay {
+    position: fixed; /* これが必要！ */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 300ms ease-in-out;
+    opacity: 1;
+    z-index: 10; /* 必要なら指定 */
+  }
+.ReactModal__Overlay--after-open.slide-overlay {
+    opacity: 1;
+}
+  
+.ReactModal__Overlay--before-close.slide-overlay {
+    opacity: 0;
+}
+  
+  /* モーダル本体 */
+.slide-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background: rgb(255, 255, 255);
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    overflow-y: auto;
+}
+  
+.ReactModal__Content--after-open.slide-modal {
+    transform: translateX(0);
+}
+  
+.ReactModal__Content--before-close.slide-modal {
+    transform: translateX(100%);
+}
+  
