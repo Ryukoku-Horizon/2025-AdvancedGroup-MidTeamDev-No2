@@ -1,7 +1,15 @@
 import * as React from "react";
 import "./ConfirmBtn.css";
 
-const ConfirmButton = ({ onClick, children = "決定", className = "", disabled = false }) => {
+type Props={
+  onClick:()=>void;
+  children?:JSX.Element | string;
+  className?:string;
+  disabled?:boolean;
+}
+
+
+const ConfirmButton = ({ onClick, children = "決定", className = "", disabled = false }:Props) => {
   return (
     <button
       onClick={onClick}

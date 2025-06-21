@@ -1,7 +1,13 @@
 import React from "react";
-import "./deleteBtn.css"; // CSS版
+import "./deleteBtn.css"; 
 
-const DeleteButton = ({ children, onClick }) => {
+type Props={
+  onClick:()=>void;
+  children:JSX.Element | string;
+}
+
+
+const DeleteButton = ({ children, onClick }:Props) => {
   return (
     <button className="common-delete-button" onClick={onClick}>
         {children}

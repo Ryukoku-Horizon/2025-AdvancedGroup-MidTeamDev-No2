@@ -1,6 +1,18 @@
 import React from 'react';
 import './CommonInput.css'; 
 
+type Props={
+  value:string;
+  label:string;
+  name:string;
+  checked:boolean;
+  onChange:()=>void;
+  required:boolean;
+  error:boolean;
+  disabled:boolean;
+  errMessage:string;
+}
+
 const CommonCheckbox = ({
     value,
     label,
@@ -11,7 +23,7 @@ const CommonCheckbox = ({
     error=false,
     disabled = false,
     errMessage
-}) => {
+}:Props) => {
   return (
     <div className="checkbox-group">
       <label className="checkbox-label">

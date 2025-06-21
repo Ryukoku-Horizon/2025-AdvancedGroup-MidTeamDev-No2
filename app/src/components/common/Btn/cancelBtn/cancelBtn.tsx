@@ -1,7 +1,14 @@
 import * as React from "react";
 import "./CancelBtn.css";
 
-const CancelButton = ({ onClick, children = "キャンセル", className = "", disabled = false }) => {
+type Props={
+  onClick:()=>void;
+  children:JSX.Element | string;
+  className:string;
+  disabled:boolean;
+}
+
+const CancelButton = ({ onClick, children = "キャンセル", className = "", disabled = false }:Props) => {
   return (
     <button
       onClick={onClick}

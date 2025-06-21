@@ -2,7 +2,7 @@ import * as React from "react";
 import Layout from "../components/Layout/Layout";
 import { convertCircleData } from "../libs/convertPendingData";
 import useFirebaseUser from "../hooks/useFirebase";
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 import { ClipLoader } from "react-spinners";
 
 const Admin = ({ pageContext }) => {

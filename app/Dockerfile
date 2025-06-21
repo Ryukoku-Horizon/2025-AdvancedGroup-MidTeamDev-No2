@@ -3,7 +3,7 @@ FROM node:20
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install -g gatsby-cli && npm install
+RUN npm install
 
 COPY . .
 

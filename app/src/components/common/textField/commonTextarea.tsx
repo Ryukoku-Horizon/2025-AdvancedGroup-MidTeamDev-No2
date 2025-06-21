@@ -1,19 +1,34 @@
-// components/CommonSelect.tsx
+// components/CommonTextarea.tsx
 import React from 'react';
-import './CommonInput.css'; // 共通のスタイルを使う
+import './CommonInput.css'; 
 
-const CommonSelect= ({
+type Props={
+  label:string;
+  name:string;
+  value:string;
+  onChange:()=>void;
+  placeholder:string;
+  required:boolean;
+  error:boolean;
+  errMessage:string;
+  disabled:boolean;
+  rows:number;
+  onBlur:()=>void;
+}
+
+const CommonTextarea = ({
   label,
   name,
   value,
   onChange,
-  options,
-  placeholder = '選択してください',
+  placeholder = '',
   required = false,
   error=false,
+  errMessage,
   disabled = false,
-  errMessage
-}) => {
+  rows = 4,
+  onBlur
+}:Props) => {
   return (
     <div className="input-group">
       {label && (
@@ -21,25 +36,21 @@ const CommonSelect= ({
           {label}{required && ' *'}
         </label>
       )}
-      <select
+      <textarea
         className={`input-field ${error ? 'input-error' : ''}`}
         name={name}
         id={name}
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
         required={required}
         disabled={disabled}
-      >
-        <option value="" disabled hidden>{placeholder}</option>
-        {options.map((opt) => (
-          <option key={opt.value} value={opt.value}>
-            {opt.label}
-          </option>
-        ))}
-      </select>
+        rows={rows}
+        onBlur={onBlur}
+      />
       {error && <p className="input-error-message">{errMessage}</p>}
     </div>
   );
 };
 
-export default CommonSelect;
+export default CommonTextarea;

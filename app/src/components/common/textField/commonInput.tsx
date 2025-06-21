@@ -1,20 +1,34 @@
-// components/CommonTextarea.tsx
+// components/CommonInput.tsx
 import React from 'react';
-import './CommonInput.css'; // 共通のスタイルを流用
+import './CommonInput.css'; 
 
-const CommonTextarea = ({
+type Props={
+  value:string;
+  label:string;
+  name:string;
+  onChange:()=>void;
+  required:boolean;
+  error:boolean;
+  disabled:boolean;
+  errMessage:string;
+  onBlur:()=>void;
+  placeholder:string;
+  type:string;
+}
+
+const CommonInput= ({
   label,
+  type = 'text',
   name,
   value,
   onChange,
   placeholder = '',
   required = false,
   error=false,
-  errMessage,
   disabled = false,
-  rows = 4,
-  onBlur
-}) => {
+  onBlur,
+  errMessage
+}:Props) => {
   return (
     <div className="input-group">
       {label && (
@@ -22,8 +36,9 @@ const CommonTextarea = ({
           {label}{required && ' *'}
         </label>
       )}
-      <textarea
+      <input
         className={`input-field ${error ? 'input-error' : ''}`}
+        type={type}
         name={name}
         id={name}
         value={value}
@@ -31,7 +46,6 @@ const CommonTextarea = ({
         placeholder={placeholder}
         required={required}
         disabled={disabled}
-        rows={rows}
         onBlur={onBlur}
       />
       {error && <p className="input-error-message">{errMessage}</p>}
@@ -39,4 +53,4 @@ const CommonTextarea = ({
   );
 };
 
-export default CommonTextarea;
+export default CommonInput;

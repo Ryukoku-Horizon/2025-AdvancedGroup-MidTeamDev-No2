@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommonTimeInput.css"; 
 
-const formatTime = (input) => {
+const formatTime = (input:string) => {
   // 空白2文字を除いて数字だけ取得
   const digits = input.replace(/\s/g, "");
 
@@ -11,27 +11,28 @@ const formatTime = (input) => {
   return { hours, minutes };
 };
 
+type Props={
+  input:string;
+  setInput:React.Dispatch<React.SetStateAction<string>>;
+}
 
 const CommonTimeInput = ({
   input,
   setInput
-}) => {
+}:Props) => {
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     let raw = e.target.value;
   
-    // 数字だけ取得して最大4桁に制限
     let digits = raw.replace(/\D/g, "").slice(0, 4);
   
-    // 1文字目は0か1のみ許可
     if (digits.length >= 1 && digits[0] !== "0" && digits[0] !== "1") return;
   
-    // 3文字目は0〜5のみ許可（分の十の位）
     if (digits.length >= 3 && !"012345".includes(digits[2])) return;
   
-    if (raw.length === 2 && digits===2) {
+    if (raw.length === 2 && digits==="2") {
       setInput(digits + "  ");
-    }else if(raw.length===4 && digits===2){
+    }else if(raw.length===4 && digits==="2"){
       setInput(digits[0])
     } else if (digits.length > 2) {
       // 3文字目以降は空白2文字を間に挟む形に
