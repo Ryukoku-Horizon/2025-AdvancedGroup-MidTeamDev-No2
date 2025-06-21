@@ -1,0 +1,29 @@
+.time-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .time-block {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .time-label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  
+  .time-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .time-separator {
+    font-size: 20px;
+    color: #888;
+  }
+  

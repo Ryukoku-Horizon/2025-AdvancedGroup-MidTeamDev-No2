@@ -1,0 +1,27 @@
+.cancel-button {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: #374151; /* gray-700 相当 */
+    border: 1px solid #9ca3af; /* gray-400 相当 */
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #f3f4f6; /* gray-100 相当 */
+    color: #1f2937; /* gray-800 相当 */
+  }
+  
+  .cancel-button:active {
+    background-color: #e5e7eb; /* gray-200 相当 */
+  }
+  
+  .cancel-button.disabled,
+  .cancel-button:disabled {
+    color: #9ca3af;
+    border-color: #d1d5db;
+    cursor: not-allowed;
+    background-color: #f9fafb;
+  }
+  
