@@ -6,7 +6,7 @@ const useRequest=()=>{
     const [loading,setLoading] = useState(false);
     const [loadingMessage,setLoadingMessage] = useState("");
     const [errMessage,setErrMessage] = useState("");
-    const [success,setSuccess] = useState(false);
+    const [success,setSuccess] = useState<boolean | undefined>(false);
 
     useEffect(()=>{
         if(success){

@@ -1,15 +1,22 @@
 import * as React from "react"
 import Modal from 'react-modal'
-import CancelButton from "../../common/Btn/cancelBtn/cancelBtn"
-import useResponse from "../../../hooks/useResponse"
 import "./modal.css";
-import usePendingData from "../../../hooks/usePendingData"
-import SuccessCheck from "../../common/checkmark/successCheck"
-import { ClipLoader } from "react-spinners"
-import DeleteButton from "../../common/Btn/deleteBtn/deleteBtn"
+import ConfirmButton from "../../common/Btn/confirmBtn/confirmBtn";
+import CancelButton from "../../common/Btn/cancelBtn/cancelBtn";
+import useResponse from "../../../hooks/useResponse";
+import { ClipLoader } from "react-spinners";
+import SuccessCheck from "../../common/checkmark/successCheck";
+import usePendingData from "../../../hooks/usePendingData";
+import { Circle } from "../../../types/Circle";
 
-const DenyModal=({showModal,setShowModal,pendingData})=>{
-    const {loading,errMessage,success,closeModal,deny} = useResponse(setShowModal);
+type Props={
+    showModal:boolean;
+    setShowModal:(arg:boolean)=>void;
+    pendingData:Circle;
+}
+
+const ApproveModal=({showModal,setShowModal,pendingData}:Props)=>{
+    const {approve,loading,errMessage,success,closeModal} = useResponse(setShowModal)
     const {setPendingData} = usePendingData()
 
     React.useEffect(()=>{
@@ -28,12 +35,12 @@ const DenyModal=({showModal,setShowModal,pendingData})=>{
         overlayClassName="approve-overlay"
         >
             <div className="modal-content">
-                <p>{pendingData.name}の申請を拒否しますか？</p>
+                <p>{pendingData.name}に了承メールを送信しますか？</p>
                 <p>{errMessage}</p>
                 <div className="modal-buttons">
                     {!loading && !success && <>
-                        <DeleteButton onClick={()=>{deny(pendingData)}}>はい</DeleteButton>
-                        <CancelButton onClick={()=>{closeModal()}}>いいえ</CancelButton>
+                        <ConfirmButton onClick={()=>{approve(pendingData)}}>はい</ConfirmButton>
+                        <CancelButton onClick={() => { closeModal(); } }>いいえ</CancelButton>
                     </>}
                     {loading && !success && <ClipLoader color="#36d7b7" size={30}  />}
                     {success && <SuccessCheck size={30} />}
@@ -43,4 +50,4 @@ const DenyModal=({showModal,setShowModal,pendingData})=>{
     )
 }
 
-export default DenyModal;
+export default ApproveModal;

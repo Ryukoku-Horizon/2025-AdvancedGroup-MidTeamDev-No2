@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from "react";
 import './CommonInput.css'; 
 
 type Props={
@@ -6,10 +6,10 @@ type Props={
   label:string;
   name:string;
   checked:boolean;
-  onChange:()=>void;
-  required:boolean;
-  error:boolean;
-  disabled:boolean;
+  onChange:React.ChangeEventHandler<HTMLInputElement> | undefined;
+  required?:boolean;
+  error?:boolean;
+  disabled?:boolean;
   errMessage:string;
 }
 

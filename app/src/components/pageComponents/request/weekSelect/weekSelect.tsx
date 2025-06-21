@@ -1,8 +1,13 @@
 import * as React from "react"
 import CommonCheckbox from "../../../common/textField/commonCheckbox";
 
-const WeekSelect=({selectedWeek,setSelectedWeek})=>{
-    const handleChange = (event) => {
+type Props={
+    selectedWeek:string[]
+    setSelectedWeek: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+const WeekSelect=({selectedWeek,setSelectedWeek}:Props)=>{
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value, checked } = event.target;
         setSelectedWeek((prev) =>{
             return checked ? [...prev, value] : prev.filter((v) => v !== value);
@@ -26,11 +31,12 @@ const WeekSelect=({selectedWeek,setSelectedWeek})=>{
             <div className="flex gap-2">
                 {weeks.map((item)=>(
                     <CommonCheckbox
-                    value={item.value}
-                    checked={selectedWeek.includes(item.value)}
-                    onChange={handleChange}
-                    label={item.label}
-                    />
+                        value={item.value}
+                        checked={selectedWeek.includes(item.value)}
+                        onChange={handleChange}
+                        label={item.label}
+                        name={""}
+                        errMessage={""}  />
                 ))}
             </div>
         </div>

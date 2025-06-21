@@ -2,15 +2,20 @@ import * as React from "react";
 import { useState } from "react";
 import CommonInput from "../../common/textField/commonInput";
 
-const NameInput = ({ name, setName }) => {
+type Props={
+  name:string;
+  setName:(arg:string)=>void;
+}
+
+const NameInput = ({ name, setName }:Props) => {
   const [isValid, setIsValid] = useState(true);
   const [touched, setTouched] = useState(false); 
 
-  const validateEmail = (value) => {
+  const validateEmail = (value:string) => {
     return value!=="";
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setIsValid(true)
     setName(e.target.value);
   };
@@ -30,6 +35,7 @@ const NameInput = ({ name, setName }) => {
         label="サークル名"
         error={!isValid && touched}
         errMessage="この欄は必須です"
+        name="cirle-name"
     />
   );
 };

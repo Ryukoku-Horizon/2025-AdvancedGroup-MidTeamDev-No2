@@ -1,14 +1,17 @@
 import * as React from "react"
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import ConfirmButton from "../../common/Btn/confirmBtn/confirmBtn"
-import CancelButton from "../../common/Btn/cancelBtn/cancelBtn"
+import { AnimatePresence } from "framer-motion"
 import ApproveModal from "./approveModal"
 import DenyModal from "./denyModal"
 import RequestDetail from "./requestDetail"
 import RequestHeader from "./requestHeader"
+import { Circle } from "../../../types/Circle"
 
-const SingleRequest = ({ item }) => {
+type Props={
+  item:Circle;
+}
+
+const SingleRequest = ({ item }:Props) => {
   const [showDetail, setShowDetail] = useState(false);
   const [showModal,setShowModal] = useState(false);
   const [showDenyModal,setShowDenyModal] = useState(false)

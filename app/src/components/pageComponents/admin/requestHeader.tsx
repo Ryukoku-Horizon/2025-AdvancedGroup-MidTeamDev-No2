@@ -1,7 +1,13 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 
-const RequestHeader=({setShowDetail,showDetail,name})=>{
+type Props={
+    setShowDetail:(arg:boolean)=>void;
+    showDetail:boolean;
+    name:string;
+}
+
+const RequestHeader=({setShowDetail,showDetail,name}:Props)=>{
     return (
         <div className="flex justify-between items-center pointer" onClick={() => setShowDetail(!showDetail)}>
             <p className="font-semibold">サークル名: {name}</p>

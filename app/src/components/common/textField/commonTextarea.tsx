@@ -1,19 +1,18 @@
-// components/CommonTextarea.tsx
-import React from 'react';
+import * as React from "react";
 import './CommonInput.css'; 
 
 type Props={
   label:string;
   name:string;
   value:string;
-  onChange:()=>void;
-  placeholder:string;
-  required:boolean;
-  error:boolean;
+  onChange:React.ChangeEventHandler<HTMLTextAreaElement>;
+  placeholder?:string;
+  required?:boolean;
+  error?:boolean;
   errMessage:string;
-  disabled:boolean;
-  rows:number;
-  onBlur:()=>void;
+  disabled?:boolean;
+  rows?:number;
+  onBlur:React.FocusEventHandler<HTMLTextAreaElement>;
 }
 
 const CommonTextarea = ({

@@ -3,7 +3,7 @@ import CampuseSelect from "../components/pageComponents/request/campuseSelect";
 import WeekSelect from "../components/pageComponents/request/weekSelect/weekSelect";
 import SelectTime from "../components/pageComponents/request/weekSelect/selectTime";
 import useRequest from "../hooks/useRequest";
-import { ClipLoader } from "react-spinners";
+import {ClipLoader} from "react-spinners";
 import * as React from "react"
 import { Link } from "gatsby";
 import Layout from "../components/Layout/Layout";
@@ -20,8 +20,8 @@ const Request=()=>{
     const [name, setName] = useState("");
     const [detail,setDetail] = useState("");
     const [dateType,setDateType] = useState("weekly");
-    const [selectedWeek,setSelectedWeek] = useState([]);
-    const [selectedCampuses, setSelectedCampuses] = useState([]);
+    const [selectedWeek,setSelectedWeek] = useState<string[]>([]);
+    const [selectedCampuses, setSelectedCampuses] = useState<string[]>([]);
     const [selectedStartTime,setSelectedStartTime] = useState("");
     const [selectedEndTime,setSelectedEndTime] = useState("");
     const [timeDetail,setTimeDetail] = useState("");
@@ -29,7 +29,8 @@ const Request=()=>{
     const {loading,loadingMessage,errMessage,request,success} = useRequest();
 
     const handleRequest=async()=>{
-        if(mail!=="" && name!=="" && detail!==""){
+        console.log("aaa")
+        if(mail!=="" && name!=="" && detail!=="" && selectedCampuses.length!==0){
             if((dateType==="weekly" && selectedWeek.length!==0) || (dateType!=="weekly" && timeDetail!=="")){
                 const date =  {type:dateType,data:dateType==="weekly" ? {week:selectedWeek,start:selectedStartTime,end:selectedEndTime} : timeDetail}
                 await request(mail,name,JSON.stringify(selectedCampuses),JSON.stringify(date),detail)

@@ -1,20 +1,19 @@
-// components/CommonSelect.tsx
-import React from 'react';
+import * as React from "react";
 import './CommonInput.css';
 
 type Props={
   label:string;
   name:string;
   value:string;
-  onChange:()=>void;
+  onChange:React.ChangeEventHandler<HTMLSelectElement> | undefined;
   options:{
     value:string;
     label:string;
   }[];
-  placeholder:string;
-  required:boolean;
-  error:boolean;
-  disabled:boolean;
+  placeholder?:string;
+  required?:boolean;
+  error?:boolean;
+  disabled?:boolean;
   errMessage:string;
 }
 

@@ -1,9 +1,9 @@
-import React from "react";
+import * as React from "react";
 import "./deleteBtn.css"; 
 
 type Props={
   onClick:()=>void;
-  children:JSX.Element | string;
+  children?:React.ReactNode;
 }
 
 

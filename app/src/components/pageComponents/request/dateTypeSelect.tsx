@@ -1,7 +1,12 @@
 import CommonSelect from "../../common/textField/commonSelect"
 import * as React from "react"
 
-const DateTypeSelect=({setDateType,dateType})=>{
+type Props={
+    setDateType:(arg:string)=>void;
+    dateType:string;
+}
+
+const DateTypeSelect=({setDateType,dateType}:Props)=>{
 
     const options =[
         {label:"毎週",value:"weekly"},
@@ -15,12 +20,12 @@ const DateTypeSelect=({setDateType,dateType})=>{
             name="dateType"
             value={dateType}
             onChange={(e) => {
-            setDateType(e.target.value);
-            }}
+                setDateType(e.target.value)
+            } }
             options={options}
             required
-            placeholder="活動頻度"
-        />
+            placeholder="活動頻度" 
+            errMessage="この欄は必須です"  />
     )
 }
 

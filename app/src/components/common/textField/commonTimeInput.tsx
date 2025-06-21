@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react"
 import "./CommonTimeInput.css"; 
 
 const formatTime = (input:string) => {
@@ -26,7 +26,7 @@ const CommonTimeInput = ({
   
     let digits = raw.replace(/\D/g, "").slice(0, 4);
   
-    if (digits.length >= 1 && digits[0] !== "0" && digits[0] !== "1") return;
+    if (digits.length >= 1 && digits[0] !== "0" && digits[0] !== "1" && digits[0] !== "2") return;
   
     if (digits.length >= 3 && !"012345".includes(digits[2])) return;
   
@@ -35,10 +35,8 @@ const CommonTimeInput = ({
     }else if(raw.length===4 && digits==="2"){
       setInput(digits[0])
     } else if (digits.length > 2) {
-      // 3文字目以降は空白2文字を間に挟む形に
       setInput(digits.slice(0, 2) + "  " + digits.slice(2));
     } else {
-      // 1文字目以下は空白なし
       setInput(digits);
     }
   };
@@ -46,7 +44,7 @@ const CommonTimeInput = ({
 
   const { hours, minutes } = formatTime(input);
 
-  const renderDigit = (char, digitIndex, displayIndex) => {
+  const renderDigit = (char:string, digitIndex:number, displayIndex:number) => {
     const digitCount = input.replace(/\D/g, "").length; // 数字だけの長さ
     const isActive = digitIndex < digitCount;
   

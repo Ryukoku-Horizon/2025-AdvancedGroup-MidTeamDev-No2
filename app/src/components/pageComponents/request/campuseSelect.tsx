@@ -2,14 +2,20 @@ import * as React from "react"
 import CommonCheckbox from "../../common/textField/commonCheckbox"
 import "./CampuseSelect.css"
 
-const campuses = [
-  { label: "深草", value: "hukakusa" },
-  { label: "瀬田", value: "seta" },
-  { label: "大宮", value: "omiya" },
-]
+type Props={
+  selectedCampuses:string[];
+  setSelectedCampuses: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
-const CampuseSelect = ({ selectedCampuses, setSelectedCampuses }) => {
-  const handleChange = (event) => {
+const CampuseSelect = ({ selectedCampuses, setSelectedCampuses }:Props) => {
+
+  const campuses = [
+    { label: "深草", value: "hukakusa" },
+    { label: "瀬田", value: "seta" },
+    { label: "大宮", value: "omiya" },
+  ]
+  
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target
     setSelectedCampuses((prev) =>
       checked ? [...prev, value] : prev.filter((v) => v !== value)
@@ -21,17 +27,14 @@ const CampuseSelect = ({ selectedCampuses, setSelectedCampuses }) => {
       <p className="campus-select-title">活動キャンパス（複数選択可）</p>
       <div className="campus-grid">
         {campuses.map((campus) => (
-          <label
-            key={campus.value}
-            className={`campus-item ${selectedCampuses.includes(campus.value) ? "selected" : ""}`}
-          >
             <CommonCheckbox
+              key={campus.value}
               value={campus.value}
               checked={selectedCampuses.includes(campus.value)}
               onChange={handleChange}
-            />
-            <span className="campus-label">{campus.label}</span>
-          </label>
+              label={campus.label}
+              name={""}
+              errMessage={""}   />
         ))}
       </div>
     </div>

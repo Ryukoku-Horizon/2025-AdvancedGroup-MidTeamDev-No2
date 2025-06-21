@@ -1,19 +1,18 @@
-// components/CommonInput.tsx
-import React from 'react';
+import * as React from "react";
 import './CommonInput.css'; 
 
 type Props={
   value:string;
   label:string;
   name:string;
-  onChange:()=>void;
-  required:boolean;
-  error:boolean;
-  disabled:boolean;
+  onChange:React.ChangeEventHandler<HTMLInputElement> | undefined;
+  required?:boolean;
+  error?:boolean;
+  disabled?:boolean;
   errMessage:string;
-  onBlur:()=>void;
-  placeholder:string;
-  type:string;
+  onBlur:React.FocusEventHandler<HTMLInputElement> | undefined;
+  placeholder?:string;
+  type?:string;
 }
 
 const CommonInput= ({

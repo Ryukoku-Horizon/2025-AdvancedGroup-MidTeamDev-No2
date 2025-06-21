@@ -2,12 +2,19 @@ import * as React from "react";
 import CommonTimeInput from "../../../common/textField/commonTimeInput";
 import "./selectTime.css"
 
+type Props={
+  selectedStartTime:string;
+  setSelectedStartTime:React.Dispatch<React.SetStateAction<string>>;
+  selectedEndTime:string;
+  setSelectedEndTime:React.Dispatch<React.SetStateAction<string>>;
+}
+
 const SelectTime = ({
   selectedStartTime,
   setSelectedStartTime,
   selectedEndTime,
   setSelectedEndTime
-}) => {
+}:Props) => {
   return (
     <div>
         <p className="time-title">活動時間</p>

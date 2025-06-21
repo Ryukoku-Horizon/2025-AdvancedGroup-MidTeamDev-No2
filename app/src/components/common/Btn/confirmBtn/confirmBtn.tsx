@@ -2,19 +2,16 @@ import * as React from "react";
 import "./ConfirmBtn.css";
 
 type Props={
-  onClick:()=>void;
-  children?:JSX.Element | string;
+  onClick:React.MouseEventHandler<HTMLButtonElement> | undefined;
+  children?:React.ReactNode;
   className?:string;
-  disabled?:boolean;
 }
 
-
-const ConfirmButton = ({ onClick, children = "決定", className = "", disabled = false }:Props) => {
+const ConfirmButton = ({ onClick, children, className}:Props) => {
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
-      className={`confirm-button ${disabled ? "disabled" : ""} ${className}`}
+      className={`confirm-button ${className}`}
     >
       {children}
     </button>

@@ -1,9 +1,16 @@
 import * as React from "react"
 import { motion } from "framer-motion"
 import ConfirmButton from "../../common/Btn/confirmBtn/confirmBtn"
-import CancelButton from "../../common/Btn/cancelBtn/cancelBtn"
+import CancelButton from "../../common/Btn/cancelBtn/cancelBtn";
+import { Circle } from "../../../types/Circle";
 
-const RequestDetail=({item,setShowModal,setShowDenyModal})=>{
+type Props={
+  item:Circle;
+  setShowModal:(arg:boolean)=>void;
+  setShowDenyModal:(arg:boolean)=>void;
+}
+
+const RequestDetail=({item,setShowModal,setShowDenyModal}:Props)=>{
     return (
         <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -15,15 +22,14 @@ const RequestDetail=({item,setShowModal,setShowDenyModal})=>{
             <p>Email: {item.email}</p>
             <p>活動内容: {item.detail}</p>
             <p>活動頻度: {item.activeDate.type}</p>
-            <p>活動時間: {item.type}</p>
 
-            {item.activeDate.type === "毎週" &&
+            {item.activeDate.type === "毎週" && typeof item.activeDate.data!=="string" &&
               item.activeDate.data.week.map((item2, i) => (
                 <p key={i}>・{item2}</p>
               ))}
 
             {item.activeDate.type !== "毎週" && (
-              <p>{item.activeDate.data}</p>
+              <p>{item.activeDate.data==="string" ? item.activeDate.data : ""}</p>
             )}
 
             <p className="flex flex-wrap gap-1">
