@@ -6,6 +6,9 @@
 .items-center{
     align-items: center;
 }
+.text-center{
+    text-align: center;
+}
 
 /* justify */
 .justify-self-center{
@@ -91,6 +94,9 @@
 .w-half{
     width: 50%;
 }
+.w-65p{
+    width: 65%;
+}
 .w-full{
     width: 100%; 
 }
@@ -170,6 +176,14 @@
     gap: 2rem;
 }
 
+/* 背景 */
+.background-blue{
+    background-color: rgb(71, 71, 239);
+}
+
+.background-gray{
+    background-color: #6e38387c;
+}
 .bg-white{
     background-color: white;
 }
