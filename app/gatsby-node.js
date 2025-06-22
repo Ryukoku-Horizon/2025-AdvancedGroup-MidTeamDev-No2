@@ -12,7 +12,7 @@ exports.createPages = async ({ actions }) => {
   circleData.forEach((item)=>{
     createPage({
         path: `/manage/${item.id}`,
-        component: path.resolve("./src/templates/manageCirclePage.jsx"),
+        component: path.resolve("./src/templates/manageCirclePage.tsx"),
         context: {item},
       })
   })

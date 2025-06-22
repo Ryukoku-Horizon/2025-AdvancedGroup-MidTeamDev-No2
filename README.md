@@ -10,10 +10,58 @@
  - gatsby 5.14.1
  - react 18.2.0
 
-# 主な機能
+## 主な機能
 
  - サークル紹介一覧表示
  - サークル検索
  - サークル紹介掲載申請
  - メール送信機能（申請に対して、承認or拒否）
  - 
+
+## ディレクトリ構成
+```
+/
+├── app/ - フロントエンド
+|   ├── src/
+|   |   ├── components/ - コンポーネント
+|   |   ├── constants/ - 定数
+|   |   ├── hooks/ - カスタムフック     
+|   |   ├── libs/
+|   |   ├── pages/
+|   |   |   ├── index.tsx - ホームページ
+|   |   |   ├── search.tsx - 検索ページ
+|   |   |   ├── login.tsx - ログインページ
+|   |   |   ├── request.tsx - 申請ページ
+|   |   |   ├── comp.tsx - 申請完了ページ
+|   |   |   ├── fqa.tsx - よくある質問ページ
+|   |   |   ├── 404.js - 404エラーページ
+|   |   |   └── admin/
+|   |   |       └── index.tsx - adminページ
+|   |   ├── styles/
+|   |   |   ├── global/ 
+|   |   |   └── index.css
+|   |   ├── templates/
+|   |   |   └── manageCirclePage.tsx - サークル管理ページ
+|   |   └──types/
+|   |       └── Circle.ts
+|   ├── dockerfile
+|   └── package.json
+├── backend/ - バックエンド
+|   └── supabase/
+|       ├── functions/
+|       |   ├── approve/
+|       |   |   └── index.ts - 申請承認api
+|       |   ├── auth_circle/ 
+|       |   |   └── index.ts - ログインapi
+|       |   ├── deny_request/
+|       |   |   └── index.ts - 申請拒否api
+|       |   ├── get_circle/
+|       |   |   └── index.ts - circleデータ取得api
+|       |   ├── get_pending/
+|       |   |   └── index.ts - pendingデータ取得api
+|       |   └──  insert_pending/
+|       |       └── index.ts - pendingデータ挿入api
+|       └── deno.json
+├── docs/
+└── docker-compose.yml
+```

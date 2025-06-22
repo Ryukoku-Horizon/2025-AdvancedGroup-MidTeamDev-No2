@@ -111,7 +111,7 @@ AIの診断ページ”/diagnosis”
 ## 使用技術
 
 フロントエンド
-s
+
 react
 gatsby
 
