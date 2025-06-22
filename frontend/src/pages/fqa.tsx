@@ -1,10 +1,11 @@
-import * as React from "react"
+import Layout from "../components/Layout/Layout";
+
 
 const FQA=()=>{
     return (
-        <div>
-            
-        </div>
+        <Layout>
+            <div> </div>
+        </Layout>
     )
 }
 
