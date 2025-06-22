@@ -1,29 +1,21 @@
-import { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import useFirebaseUser from "../../hooks/useFirebase";
-import { Link, useNavigate,useParams } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
-import useCircleData from "../../hooks/useCircle";
+import { Link,useParams } from "react-router-dom";
+import useSingleCircleData from "../../hooks/useSingleCircle";
+import CenterLoader from "../../components/common/loader/centerLoader";
+import RequireLoginMessage from "../../components/common/messageBord/requireLoginMessage";
 
 const ManageCircle=()=>{
     const { id } = useParams();
-    console.log("id",id)
-    const {circleData,loading:dataLoading} = useCircleData(id);
-    const {user,loading,logout} = useFirebaseUser()
-    const navigate = useNavigate()
-
-    useEffect(()=>{
-        if(!user && !loading){
-            navigate("/")
-        }
-    },[user])
+    const {circleData,loading:dataLoading} = useSingleCircleData(id);
+    const {user,loading,logout} = useFirebaseUser();
 
     return (
         <Layout>
             {user && !dataLoading && circleData && <div>
                 <button onClick={()=>{logout()}}>ログアウト</button>
                 <Link to={`/manage/${circleData.id}/edit`}>ページを編集する</Link>
-                <Link to={`/manage`}>プロフィールを編集する</Link>
+                <Link to={`/manage/${circleData.id}/editProfile`}>プロフィールを編集する</Link>
                 <Link to={`/`}>ページを閲覧する</Link>
                 <p>{circleData.name}</p>
                 <p>基本情報</p>
@@ -40,10 +32,8 @@ const ManageCircle=()=>{
                     </p>}
                 </div>
             </div>}
-            {!user && loading && dataLoading && 
-            <div className="items-center justify-center">
-                <ClipLoader size={100} />
-            </div>}
+            {(loading || dataLoading) && <CenterLoader />}
+            {!user && !loading && <RequireLoginMessage />}
         </Layout>
     )
 }

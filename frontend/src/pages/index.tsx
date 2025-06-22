@@ -1,8 +1,8 @@
 import Layout from "../components/Layout/Layout"
 import { Link } from "react-router-dom";
 import useAllCircleData from "../hooks/useAllCircle";
-import { ClipLoader } from "react-spinners";
 import SingleCircleCard from "../components/pageComponents/home/singleCIrcleCard";
+import CenterLoader from "../components/common/loader/centerLoader";
 
 const Home = () => {
   const {circleData,loading} = useAllCircleData()
@@ -14,7 +14,7 @@ const Home = () => {
         <Link to="/request">request</Link>
         <Link to="search">search</Link>
       </div>
-      {loading && <ClipLoader color="#36d7b7" size={56} />}
+      {loading && <CenterLoader />}
       {!loading && <div>
         {circleData.map((item)=>(
           <SingleCircleCard circleData={item} />

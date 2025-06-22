@@ -3,7 +3,7 @@ import { convertCircleData } from "../libs/convertPendingData";
 import { Circle } from "../types/Circle";
 import { getCircleData } from "../libs/gateways";
 
-const useCircleData=(id:string | undefined)=>{
+const useSingleCircleData=(id:string | undefined)=>{
     const [circleData,setCircleData] =useState<Circle | null>(null);
     const [loading,setLoading] = useState(false);
 
@@ -27,4 +27,4 @@ const useCircleData=(id:string | undefined)=>{
     return {circleData,loading}
 }
 
-export default useCircleData;
+export default useSingleCircleData;

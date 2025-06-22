@@ -1,0 +1,39 @@
+.require-login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 32px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .require-login-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .require-login-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 24px;
+  }
+  
+  .require-login-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .require-login-button:hover {
+    background-color: #0056b3;
+  }
+  

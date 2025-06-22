@@ -1,10 +1,12 @@
 import { auth } from "../libs/firebase"
 import { onAuthStateChanged, signInWithCustomToken, signOut, User } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useFirebaseUser = () => {
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -29,6 +31,7 @@ const useFirebaseUser = () => {
     try {
       await signOut(auth);
     } finally {
+      navigate("/")
       setLoading(false);
     }
   };

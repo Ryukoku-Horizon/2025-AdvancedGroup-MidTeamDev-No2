@@ -4,12 +4,17 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  }
+    transform: perspective(1000px);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    will-change: transform, box-shadow;
+}
   
-  .card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  }
+.card:hover {
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+}
+  
   
   .image {
     width: 100%;
@@ -21,16 +26,16 @@
     padding: 16px;
   }
   
-  .title {
+.title {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 0 8px 0;
     color: #333;
-  }
+}
   
-  .description {
+.description {
     font-size: 0.95rem;
     color: #666;
     line-height: 1.4;
-  }
+}
   

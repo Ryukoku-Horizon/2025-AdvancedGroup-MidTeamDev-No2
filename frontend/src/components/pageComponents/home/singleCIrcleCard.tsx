@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Circle } from "../../../types/Circle";
 import "./circleCard.css"
 
@@ -7,13 +8,15 @@ type Props={
 
 const SingleCircleCard=({circleData}:Props)=>{
     return (
-        <div className="card">
-            <img src={"/thum.png"} alt={`${circleData.name} の画像`} className="image" />
-            <div className="content">
-                <h2 className="title">{circleData.name}</h2>
-                <p className="description">{circleData.detail}</p>
+        <Link to={`/circles/${circleData.id}`}>
+            <div className="card">
+                <img src={"/thum.png"} alt={`${circleData.name} の画像`} className="image" />
+                <div className="content">
+                    <h2 className="title">{circleData.name}</h2>
+                    <p className="description">{circleData.detail}</p>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

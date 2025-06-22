@@ -1,8 +1,8 @@
 import usePendingData from "../../hooks/usePendingData";
 import SingleRequest from "../../components/pageComponents/admin/singleRequest";
 import Layout from "../../components/Layout/Layout";
-import { ClipLoader } from "react-spinners";
 import ConfirmButton from "../../components/common/Btn/confirmBtn/confirmBtn";
+import CenterLoader from "../../components/common/loader/centerLoader";
 
 const Admin = () => {
     const {pendingData,loading,setN,n} = usePendingData()
@@ -26,9 +26,7 @@ const Admin = () => {
                             <SingleRequest key={item.id} item={item} />
                     )})}
                     {loading && 
-                        <div className="flex items-center">
-                            <ClipLoader color="#36d7b7" size={50}  />
-                        </div>
+                        <CenterLoader />
                         }
                 </div>}
             </div>
