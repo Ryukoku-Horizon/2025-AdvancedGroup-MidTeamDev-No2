@@ -188,3 +188,34 @@ Circleテーブルからデータを取得する
 	error:"条件（match）が無効です"
 }
 ```
+
+### エンドポイント
+
+- POST `/functions/v1/edit_circle`
+
+### 概要
+
+Circleテーブルのデータを編集する
+
+### リクエスト
+
+- pendingData（{id,name,email,activeDate,detail,location}）
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true
+}
+```
+
+失敗時（例）
+
+```json
+{
+	success:false,
+	error:"条件（match）が無効です"
+}
+```

@@ -15,6 +15,7 @@
  - サークル紹介一覧表示
  - サークル検索
  - サークル紹介掲載申請
+ - 申請時にサイト管理者にディスコードでお知らせ
  - メール送信機能（申請に対して、承認or拒否）
  - 
 
@@ -38,10 +39,7 @@
 |   |   |   └── admin/
 |   |   |       └── index.tsx - adminページ
 |   |   ├── styles/
-|   |   |   ├── global/ 
-|   |   |   └── index.css
-|   |   ├── templates/
-|   |   |   └── manageCirclePage.tsx - サークル管理ページ
+|   |   |   └── global/ 
 |   |   └──types/
 |   |       └── Circle.ts
 |   ├── dockerfile
@@ -55,6 +53,8 @@
 |       |   |   └── index.ts - ログインapi
 |       |   ├── deny_request/
 |       |   |   └── index.ts - 申請拒否api
+|       |   ├── edit_circle/
+|       |   |   └── index.ts - circleデータ編集api
 |       |   ├── get_circle/
 |       |   |   └── index.ts - circleデータ取得api
 |       |   ├── get_pending/
