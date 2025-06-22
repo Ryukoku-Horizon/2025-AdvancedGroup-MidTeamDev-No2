@@ -31,6 +31,18 @@
 .block{
     display: block;
 }
+.grid{
+    display: grid;
+}
+.grid-2{
+    grid-row: 2;
+}
+.grid-3{
+    grid-row: 3;
+}
+.grid-4{
+    grid-row: 4;
+}
 
 /* flex-direction */
 .flex-col{

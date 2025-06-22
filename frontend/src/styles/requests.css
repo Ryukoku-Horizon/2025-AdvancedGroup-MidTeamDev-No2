@@ -1,0 +1,76 @@
+/* 中央寄せ全体レイアウト */
+.form-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 40px 16px;
+    margin:0;
+  }
+  
+  /* カード風フォーム */
+  .form-card {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* フォームタイトル */
+  .form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  /* ホームリンク */
+  .back-link {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #3182ce;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* 入力エラー／メッセージ */
+  .form-error {
+    color: #e53e3e;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  .form-message {
+    color: #2b6cb0;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  /* ボタンと結果エリア */
+  .form-footer {
+    margin-top: 24px;
+    text-align: center;
+  }
+  
+  /* 申請ボタン */
+  .submit-button {
+    background-color: #3182ce;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .submit-button:hover {
+    background-color: #2b6cb0;
+  }
+  

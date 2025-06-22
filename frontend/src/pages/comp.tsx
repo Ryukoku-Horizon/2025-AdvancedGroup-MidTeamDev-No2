@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import "../styles/global/border.css"
-import "../styles/global/box.css"
-import "../styles/global/position.css"
-import "../styles/global/text.css"
 
 const Comp=()=>{
     return (

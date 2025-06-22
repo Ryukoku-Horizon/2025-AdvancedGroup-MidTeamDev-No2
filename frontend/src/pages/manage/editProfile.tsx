@@ -11,9 +11,6 @@ import WeekSelect from "../../components/pageComponents/request/weekSelect/weekS
 import SelectTime from "../../components/pageComponents/request/weekSelect/selectTime";
 import TimeDetailInput from "../../components/pageComponents/request/timeDetailInput";
 import CampuseSelect from "../../components/pageComponents/request/campuseSelect";
-import ConfirmButton from "../../components/common/Btn/confirmBtn/confirmBtn";
-import { ClipLoader } from "react-spinners";
-import SuccessCheck from "../../components/common/checkmark/successCheck";
 
 const EditProfile=()=>{
     const { id } = useParams();
@@ -41,8 +38,6 @@ const EditProfile=()=>{
     return (
         <Layout>
             <div className="flex flex-col">
-                <Link to="/">ホーム</Link>
-                <p className="font-2xl bold ">申請ページ</p>
                 <EmailInput email={mail} setEmail={setMail} />
                 <NameInput name={name} setName={setName} />
                 <DetailInput detail={detail} setDetail={setDetail} />
