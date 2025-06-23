@@ -19,6 +19,9 @@
 .font-2xl{
     font-size:xx-large;
 }
+.font-50{
+    font-size: 50px;
+}
 
 .bold{
     font-weight: bold;

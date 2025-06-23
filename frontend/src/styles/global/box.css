@@ -103,6 +103,10 @@
 .w-screen{
     width: 100vw;
 }
+.w-18{
+    width: 9rem;
+    height: 9rem;
+}
 
 /* 高さ */
 .h-0_5{
@@ -181,9 +185,6 @@
     background-color: rgb(71, 71, 239);
 }
 
-.background-gray{
-    background-color: #6e38387c;
-}
 .bg-white{
     background-color: white;
 }
