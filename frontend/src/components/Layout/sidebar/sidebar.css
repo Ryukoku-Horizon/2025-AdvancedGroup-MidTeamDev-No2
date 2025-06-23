@@ -40,3 +40,20 @@
     transform: translateX(100%);
 }
   
+.sidebar-link {
+    display: block;
+    padding: 12px 20px;
+    margin: 4px 8px;
+    border-radius: 6px;
+    color: #4a5568; /* グレー */
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #ebf8ff; /* 薄い青背景 */
+    color: #2b6cb0; /* 濃い青文字 */
+  }
+  

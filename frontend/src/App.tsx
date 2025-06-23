@@ -8,6 +8,7 @@ import Admin from './pages/admin';
 import ManageCircle from "./pages/manage/circle";
 import CirclePage from "./pages/circles/circlePage";
 import EditProfile from "./pages/manage/editProfile";
+import FQA from "./pages/fqa";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/request" element={<Request />} />
         <Route path="/comp" element={<Comp />} />
+        <Route path="/fqa" element={<FQA />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/manage/:id" element={<ManageCircle />} />
         <Route path="/manage/:id/editProfile" element={<EditProfile />} />

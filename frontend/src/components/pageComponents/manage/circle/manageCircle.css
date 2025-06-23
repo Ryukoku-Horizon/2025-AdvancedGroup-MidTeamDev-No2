@@ -1,0 +1,95 @@
+.manage-container {
+    padding: 24px;
+    background-color: #f7fafc;
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+  
+  .logout-button {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #c53030;
+  }
+  
+  .main-content {
+    display: flex;
+    gap: 32px;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .sidebar-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #2d3748;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
+  }
+  
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    color: #2b6cb0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  
+  .sidebar a:hover {
+    color: #1a365d;
+    text-decoration: underline;
+  }
+  
+  .circle-info {
+    flex: 1;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .circle-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .circle-detail h4 {
+    font-size: 1.1rem;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: #4a5568;
+  }
+  
+  .circle-location ul {
+    margin: 0;
+    padding-left: 16px;
+    list-style: disc;
+  }
+  
+  .circle-location li {
+    color: #4a5568;
+    font-size: 0.95rem;
+  }
+  

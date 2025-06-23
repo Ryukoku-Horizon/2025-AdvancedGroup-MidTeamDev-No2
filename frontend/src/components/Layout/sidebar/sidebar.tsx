@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
 import Modal from 'react-modal'
 import "./sidebar.css"
+import CommonToggle from "../../common/toggle/toggle";
+import SidebarLink from "./sidebarLink";
 
 Modal.setAppElement('#root')
 
@@ -20,15 +21,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
       closeTimeoutMS={350}
     >
       <div style={{ marginTop: "4rem" }}>
-        <Link to="/search">
-          <p>検索</p>
-        </Link>
-        {/* <Link to="">
-          <p>サークル診断</p>
-        </Link> */}
-        <Link to="/login">
-          <p>ログイン</p>
-        </Link>
+        <SidebarLink to="/search" label="検索" />
+        <SidebarLink to="/fqa" label="よくある質問" />
+        <CommonToggle title="サークル管理者向け">
+          <>
+            <SidebarLink to="/login" label="ログイン" />
+            <SidebarLink to="/request" label="サークル掲載申請" />
+          </>
+        </CommonToggle>
       </div>
     </Modal>
   )
