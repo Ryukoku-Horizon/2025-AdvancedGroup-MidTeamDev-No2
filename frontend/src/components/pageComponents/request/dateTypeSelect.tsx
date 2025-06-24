@@ -8,9 +8,9 @@ type Props={
 const DateTypeSelect=({setDateType,dateType}:Props)=>{
 
     const options =[
-        {label:"毎週",value:"weekly"},
-        {label:"月に数回",value:"monthly"},
-        {label:"不定期",value:"irregular"}
+        {label:"毎週",value:"毎週"},
+        {label:"月に数回",value:"月に数回"},
+        {label:"不定期",value:"不定期"}
     ]
 
     return (

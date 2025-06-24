@@ -10,9 +10,9 @@ type Props={
 const CampuseSelect = ({ selectedCampuses, setSelectedCampuses }:Props) => {
 
   const campuses = [
-    { label: "深草", value: "hukakusa" },
-    { label: "瀬田", value: "seta" },
-    { label: "大宮", value: "omiya" },
+    { label: "深草", value: "深草" },
+    { label: "瀬田", value: "瀬田" },
+    { label: "大宮", value: "大宮" },
   ]
   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -29,7 +29,7 @@ const CommonTextarea = ({
   onBlur
 }:Props) => {
   return (
-    <div className="input-group">
+    <div className="input-group w-full">
       {label && (
         <label className="input-label" htmlFor={name}>
           {label}{required && ' *'}

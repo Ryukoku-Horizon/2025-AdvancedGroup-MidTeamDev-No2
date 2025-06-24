@@ -43,6 +43,16 @@ const HeroSection=()=>{
                     placeholder="サークルを検索：プログラミング、テニス、ダンス..."
                 />
             </motion.label>
+            <motion.div
+                className="hero-cta"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+                >
+                <a href="#circle-list" className="hero-button">
+                    サークル一覧はこちら
+                </a>
+            </motion.div>
         </section>
     )
 }

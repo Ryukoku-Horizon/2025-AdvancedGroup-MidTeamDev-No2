@@ -25,7 +25,7 @@ export const getPendingData=async(select:string,match?:{[key:string]:string})=>{
     }
 }
 
-export const getCircleData=async(select:string,match?:{[key:string]:string})=>{
+export const getCircleData=async(select:string,match?:{[key:string]:string},limit?:number,offset?:number)=>{
     try{
         const res = await fetch(`${SUPABASE_URL}/functions/v1/get_circle`,{
             method: "POST",
@@ -35,7 +35,9 @@ export const getCircleData=async(select:string,match?:{[key:string]:string})=>{
             },
             body:JSON.stringify({
                 match,
-                select
+                select,
+                limit,
+                offset
             })
         })
         if(!res.ok){
