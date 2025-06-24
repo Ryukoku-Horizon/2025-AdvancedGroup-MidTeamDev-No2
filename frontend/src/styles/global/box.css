@@ -72,6 +72,15 @@
     border-radius: 50%;
 }
 
+.radisu-none-left{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.radius-none-right{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 /* 横幅 */
 .w-0_5{
     width:0.25rem;
@@ -106,11 +115,17 @@
 .w-9{
     width: 4.5rem;
 }
+.w-10p{
+    width: 10%;
+}
 .w-half{
     width: 50%;
 }
 .w-65p{
     width: 65%;
+}
+.w-90p{
+    width: 90%;
 }
 .w-full{
     width: 100%; 
@@ -301,4 +316,8 @@
 }
 .opacity-max{
     opacity: 100%;
+}
+
+.box-shadow{
+    box-shadow:0 10px 10px rgb(192, 192, 192);
 }

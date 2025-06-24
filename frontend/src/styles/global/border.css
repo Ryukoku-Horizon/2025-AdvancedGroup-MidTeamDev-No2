@@ -202,3 +202,6 @@
     border-left-style: solid;
     border-left-width: 8px;
 }
+.border-width-none{
+    border-width: 0;
+}
