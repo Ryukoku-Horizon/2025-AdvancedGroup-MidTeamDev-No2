@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Circle } from "../../../../types/Circle";
 import "./manageCircle.css"
 
@@ -9,8 +10,12 @@ const CircleInfo=({circleData}:Props)=>{
     return (
         <div>
             <div className="circle-cover-wrapper">
+                {circleData.image==="" && 
+                <span>カバー画像が選択されていません（
+                    <Link to={`/manage/${circleData.id}/editProfile`} className="link">こちら</Link>
+                    から選択できます）</span>}
                 <img
-                src={"/thum.png"}
+                src={circleData.image!=="" ? circleData.image : "/no-image.png"}
                 alt={`${circleData.name} のカバー画像`}
                 className="circle-cover"
                 />

@@ -44,7 +44,6 @@
   
   .circle-cover-wrapper {
     width: 100%;
-    /* 高さを固定しない */
     overflow: hidden;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -54,9 +53,15 @@
   
   .circle-cover {
     width: 100%;
-    height: auto; /* ←ここがポイント */
+    height: auto;
     max-height: 300px;
     object-fit: contain;
     border-radius: 8px;
   }
   
+  .link{
+    color: #2b6cb0;
+  }
+  .link:hover{
+    text-decoration: underline;
+  }

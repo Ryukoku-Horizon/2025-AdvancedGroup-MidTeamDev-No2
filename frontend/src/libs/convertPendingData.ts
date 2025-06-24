@@ -70,7 +70,7 @@ const convertFrequency=(type:string)=>{
     }else if(type==="irregula"){
         return "不定期"
     }else{
-        return ""
+        return type
     }
 }
 
@@ -91,12 +91,12 @@ const convertWeek=(weeks:string[])=>{
         }else if(week==="sun"){
             return "日曜日"
         }else{
-            return ""
+            return weeks
         }
     })
 }
 
-const convertLoacation=(locations:string[])=>{
+const convertLoacation=(locations:string[]):string[]=>{
     return locations.map((location)=>{
         if(location==="hukakusa"){
             return "深草";
@@ -105,7 +105,7 @@ const convertLoacation=(locations:string[])=>{
         }else if(location==="omiya"){
             return "大宮";
         }else{
-            return ""
+            return location
         }
     })
 }

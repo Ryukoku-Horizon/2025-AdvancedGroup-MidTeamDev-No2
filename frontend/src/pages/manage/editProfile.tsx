@@ -19,6 +19,7 @@ import MainScreen from "../../components/pageComponents/manage/mainScreen";
 import SideMenu from "../../components/pageComponents/manage/sidemenu";
 import RequireLoginMessage from "../../components/common/messageBord/requireLoginMessage";
 import CenterLoader from "../../components/common/loader/centerLoader";
+import CommonFileInput from "../../components/common/textField/commonFileInput";
 
 const EditProfile=()=>{
     const { id } = useParams();
@@ -34,6 +35,7 @@ const EditProfile=()=>{
     const [selectedStartTime,setSelectedStartTime] = useState("");
     const [selectedEndTime,setSelectedEndTime] = useState("");
     const [timeDetail,setTimeDetail] = useState("");
+    const [image, setImage] = useState<File | null>(null);
 
     useEffect(()=>{
         if(circleData){
@@ -46,7 +48,6 @@ const EditProfile=()=>{
                 setSelectedStartTime(circleData.activeDate.data.start);
                 setSelectedEndTime(circleData.activeDate.data.end);
             };
-            console.log(circleData.location)
             setSelectedCampuses(circleData.location)
         }
     },[circleData])
@@ -73,7 +74,9 @@ const EditProfile=()=>{
                             start:selectedStartTime,
                             end:selectedEndTime
                         } : timeDetail
-                    }})
+                    },
+                    image:""
+                })
             }
         }
     }
@@ -88,6 +91,7 @@ const EditProfile=()=>{
                     <MainScreen>
                         {!loadData && circleData && <div className="flex flex-col items-start">
                             <Link to={`/manage/${id}`} className="back-link mb-3">← 戻る</Link>
+                            <CommonFileInput setFile={setImage} />
                             <NameInput name={name} setName={setName} />
                             <DetailInput detail={detail} setDetail={setDetail} />
                             <DateTypeSelect dateType={dateType} setDateType={setDateType} />
@@ -108,7 +112,7 @@ const EditProfile=()=>{
                             {success && <SuccessCheck size={50} />}
                             {errMessage!=="" && <p>{errMessage}</p>}
                         </div>}
-                        {loading && loadData && !circleData && <CenterLoader />}
+                        {loading || loadData && <CenterLoader />}
                     </MainScreen>
                 </div>
             </div>

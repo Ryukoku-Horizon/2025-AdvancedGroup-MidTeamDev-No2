@@ -5,6 +5,7 @@ export type Circle={
     location:string[];
     activeDate:ActiveDate;
     detail:string;
+    image:string;
 }
 
 type ActiveDate={
@@ -23,4 +24,5 @@ export type StringfyCircle={
     location:string;
     activeDate:string;
     detail:string;
+    image:string;
 }
