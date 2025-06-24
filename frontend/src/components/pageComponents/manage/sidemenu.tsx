@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import "./manageCircle.css"
+import "./manage.css"
 
 type Props={
-    id:string | number;
+    id:string | number | undefined;
 }
 
 const SideMenu=({id}:Props)=>{

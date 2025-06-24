@@ -6,6 +6,9 @@
 .items-center{
     align-items: center;
 }
+.items-start{
+    align-items: start;
+}
 .text-center{
     text-align: center;
 }

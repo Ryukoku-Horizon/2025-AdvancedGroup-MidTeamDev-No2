@@ -7,7 +7,14 @@ type Props={
 
 const CircleInfo=({circleData}:Props)=>{
     return (
-        <section className="circle-info">
+        <div>
+            <div className="circle-cover-wrapper">
+                <img
+                src={"/thum.png"}
+                alt={`${circleData.name} のカバー画像`}
+                className="circle-cover"
+                />
+            </div>
             <h2 className="circle-name">{circleData.name}</h2>
             <div className="circle-detail">
                 <h4>基本情報</h4>
@@ -31,7 +38,7 @@ const CircleInfo=({circleData}:Props)=>{
                 </p>
                 )}
             </div>
-        </section>
+        </div>
     )
 }
 

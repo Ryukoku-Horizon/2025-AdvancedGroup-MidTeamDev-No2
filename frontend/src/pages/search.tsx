@@ -9,9 +9,8 @@ const Search=()=>{
                     <h2>検索</h2>
                     <h2 className="gray-2 font-2xl">気になるサークルを簡単検索</h2>
                     <form>
-                        <table >            
+                        <table>            
                             <tr>
-                                
                                 <td>
                                     <input className="w-full radius-md" id="text" />
                                 </td>

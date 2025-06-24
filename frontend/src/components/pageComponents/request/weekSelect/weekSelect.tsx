@@ -16,13 +16,13 @@ const WeekSelect=({selectedWeek,setSelectedWeek}:Props)=>{
     };
 
     const weeks = [
-        { label: "月曜日", value: "mon" },
-        { label: "火曜日", value: "tue" },
-        { label: "水曜日", value: "wen" },
-        { label: "木曜日", value: "thu" },
-        { label: "金曜日", value: "fri" },
-        { label: "土曜日", value: "sat" },
-        { label: "日曜日", value: "sun" },
+        { label: "月曜日", value: "月曜日" },
+        { label: "火曜日", value: "火曜日" },
+        { label: "水曜日", value: "水曜日" },
+        { label: "木曜日", value: "木曜日" },
+        { label: "金曜日", value: "金曜日" },
+        { label: "土曜日", value: "土曜日" },
+        { label: "日曜日", value: "日曜日" },
       ]
 
     return (
