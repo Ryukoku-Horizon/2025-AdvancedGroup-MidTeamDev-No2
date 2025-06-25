@@ -10,6 +10,7 @@ import CirclePage from "./pages/circles/circlePage";
 import EditProfile from "./pages/manage/editProfile";
 import FQA from "./pages/fqa";
 import AIsearch from "./pages/ai";
+import EditPage from "./pages/manage/pageEdit";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/manage/:id" element={<ManageCircle />} />
         <Route path="/manage/:id/editProfile" element={<EditProfile />} />
+        <Route path="/manage/:id/editPage" element={<EditPage />} />
         <Route path="/circles/:id" element={<CirclePage />} />
         <Route path="/ai" element={<AIsearch />} />
       </Routes>
