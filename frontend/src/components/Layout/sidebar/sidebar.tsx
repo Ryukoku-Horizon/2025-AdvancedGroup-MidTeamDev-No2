@@ -21,6 +21,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
       closeTimeoutMS={350}
     >
       <div style={{ marginTop: "4rem" }}>
+        <SidebarLink to='/' label='ホーム' />
         <SidebarLink to="/search" label="検索" />
         <SidebarLink to="/fqa" label="よくある質問" />
         <CommonToggle title="サークル管理者向け">

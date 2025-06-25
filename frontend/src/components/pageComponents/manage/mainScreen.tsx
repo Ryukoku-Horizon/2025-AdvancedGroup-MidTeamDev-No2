@@ -7,7 +7,7 @@ type Props={
 
 const MainScreen=({children}:Props)=>{
     return (
-        <section className="circle-info">
+        <section className="circle-info flex flex-1 flex-col">
             {children}
         </section>
     )

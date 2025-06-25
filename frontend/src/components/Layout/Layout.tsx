@@ -13,13 +13,13 @@ const Layout=({children}:Props)=>{
     const [showSidebar,setShowSidebar] = useState(false);
 
     return (
-        <div className="flex flex-col flex-1 h-full w-full">
+        <div className="flex flex-col flex-1">
             <div className="fixed r-1 t-1" style={{zIndex: 1100 }}>
                 <MenuBtn setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
             </div>
             <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
             <Header />
-            <main className="flex flex-col flex-1 h-full w-full pt-8 justify-start ali">
+            <main className="h-full pt-8">
                 {children}
             </main>
             <Footer />
