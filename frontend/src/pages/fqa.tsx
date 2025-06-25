@@ -1,22 +1,6 @@
-import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import "../components/pageComponents/fqa/fqa.css";
-
-const FQAItem = ({ question, answer }: { question: string; answer: string }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="fqa-border">
-      <div className="fqa-header" onClick={() => setOpen(!open)}>
-        <h3 className="fqa-question">{question}</h3>
-        <span className={`fqa-icon ${open ? "open" : ""}`}>▼</span>
-      </div>
-      <div className={`fqa-answer-box ${open ? "open" : ""}`}>
-        <p className="fqa-answer">{answer}</p>
-      </div>
-    </div>
-  );
-};
+import FQAItem from "../components/pageComponents/fqa/fqaItem";
 
 const FQA = () => {
   const data = [
