@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./fqa.css"
 
 const FQAItem = ({ question, answer }: { question: string; answer: string }) => {
     const [open, setOpen] = useState(false);

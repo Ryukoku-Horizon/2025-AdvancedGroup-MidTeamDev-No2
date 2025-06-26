@@ -1,5 +1,4 @@
 import Layout from "../components/Layout/Layout";
-import "../components/pageComponents/fqa/fqa.css";
 import FQAItem from "../components/pageComponents/fqa/fqaItem";
 
 const FQA = () => {

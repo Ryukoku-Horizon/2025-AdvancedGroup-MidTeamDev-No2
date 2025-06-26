@@ -1,16 +1,52 @@
 import { useEffect, useRef, useState } from "react";
 import { getCaretPosition, getSelectionRangeInElement, setCaretPosition } from "../libs/caretHelper";
+import { Block } from "../types/block";
+import { parseHtmlToRichTexts, richTextsToHtml } from "../libs/richTextHelper";
+import { applyBoldToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
 
 const useEditor=()=>{
+    const emptyBlock:Block = {
+        plainText:"",
+        richTexts:[{text:"",decoration:{bold:false,underline:false,h1:false,h2:false,h3:false},href:null}]
+    }
+
     const [isFocused, setIsFocused] = useState<boolean[]>([true]);
-    const [blocks,setBlocks] = useState<string[]>([""])
+    const [blocks,setBlocks] = useState<Block[]>([emptyBlock])
     const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [isComposing, setIsComposing] = useState(false);
+
+    const handleBold=()=>{
+        const index = getSelectedBlockIndex(inputRefs.current);
+        if (index === null) return;
+        const applyed = applyBoldToSelection(inputRefs.current[index]!,blocks,index);
+        if(applyed){
+            setBlocks(prev =>
+                prev.map((b, i) =>
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts } : b
+                )
+            );
+        }
+    }
+
+    const handleUnderline=()=>{
+        const index = getSelectedBlockIndex(inputRefs.current);
+        if (index === null) return;
+        const applyed = applyUnderlineToSelection(inputRefs.current[index]!,blocks,index);
+        if(applyed){
+            setBlocks(prev =>
+                prev.map((b, i) =>
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts } : b
+                )
+            );
+        }
+    }
 
     useEffect(() => {
         blocks.forEach((text, i) => {
           const el = inputRefs.current[i];
-          if (el && el.innerText !== text) {
-            el.innerText = text;
+          const html = richTextsToHtml(text.richTexts) 
+          if(el && el.innerHTML !== html){
+            el.innerHTML =  html;
           }
         });
       }, [blocks]);
@@ -37,8 +73,12 @@ const useEditor=()=>{
         return newArray
     }
 
-    const handleChange=(value:string,i:number)=>{
-        setBlocks((prev)=> swapArrayElements(prev,i,value))
+    const handleOnInput=(html:string,i:number)=>{
+        const newRichTexts = parseHtmlToRichTexts(html);
+        const newPlain = newRichTexts.map(rt => rt.text).join("");
+        setBlocks((prev) =>
+            prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts } : b)
+        );
     }
 
     const handleOnFocus=(i:number)=>{
@@ -49,90 +89,108 @@ const useEditor=()=>{
         setIsFocused((prev)=>swapArrayElements(prev,i,false))
     }
 
-    const handleKeyDown=(e:  React.KeyboardEvent<HTMLDivElement>,block:string,i:number)=>{
-        if(e.key==="ArrowRight"){
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, block: Block, i: number) => {
+        const plainText = block.plainText;
+    
+        if (e.key === "ArrowRight") {
             const caretPosition = getCaretPosition(inputRefs.current[i]!);
-            if(inputRefs.current[i + 1] && caretPosition===block.length){
+            if (inputRefs.current[i + 1] && caretPosition === plainText.length) {
                 e.preventDefault();
                 inputRefs.current[i + 1]?.focus();
-                setCaretPosition(inputRefs.current[i + 1]!,0)
+                setCaretPosition(inputRefs.current[i + 1]!, 0);
             }
-        }else if(e.key==="ArrowLeft"){
-            const caretPosition =  getCaretPosition(inputRefs.current[i]!);
-            if(inputRefs.current[i - 1] && caretPosition===0){
+        } else if (e.key === "ArrowLeft") {
+            const caretPosition = getCaretPosition(inputRefs.current[i]!);
+            if (inputRefs.current[i - 1] && caretPosition === 0) {
                 e.preventDefault();
                 inputRefs.current[i - 1]?.focus();
-                setCaretPosition(inputRefs.current[i - 1]!,blocks[i -1 ].length)
+                setCaretPosition(inputRefs.current[i - 1]!, blocks[i - 1].plainText.length);
             }
-        }else if(e.key==="ArrowDown"){
-            if(inputRefs.current[i + 1]){
+        } else if (e.key === "ArrowDown") {
+            if (inputRefs.current[i + 1]) {
                 e.preventDefault();
                 inputRefs.current[i + 1]?.focus();
             }
-        }else if(e.key==="ArrowUp"){
-            if(inputRefs.current[i - 1]){
+        } else if (e.key === "ArrowUp") {
+            if (inputRefs.current[i - 1]) {
                 e.preventDefault();
                 inputRefs.current[i - 1]?.focus();
             }
-        }else if (e.key === "Enter") {
+        } else if (e.key === "Enter") {
+            if (isComposing) return;
+
             e.preventDefault();
-            const caretPosition =  getCaretPosition(inputRefs.current[i]!);
-            if(caretPosition===block.length){
-                setBlocks((prev) =>addElements(prev,i + 1,""));
-                setIsFocused((prev) =>addElements(prev,i + 1,false));
-                setTimeout(() => {
-                    inputRefs.current[i + 1]?.focus();
-                }, 0);
-            }else{
-                if(caretPosition===0){
-                    setBlocks((prev) =>{
-                        const newBlock = swapArrayElements(prev,i,"")
-                        return addElements(newBlock,i + 1,block)
-                    });
-                    setIsFocused((prev) =>addElements(prev,i + 1,false));
-                    setTimeout(() => {
-                        inputRefs.current[i + 1]?.focus();
-                        setCaretPosition(inputRefs.current[i + 1]!,0)
-                    }, 0);
-                }else{
-                    setBlocks((prev) =>{
-                        const newBlock = swapArrayElements(prev,i,block.slice(0,caretPosition))
-                        return addElements(newBlock,i + 1,block.slice(caretPosition,block.length))
-                    });
-                    setIsFocused((prev) =>addElements(prev,i + 1,false));
-                    setTimeout(() => {
-                        inputRefs.current[i + 1]?.focus();
-                        setCaretPosition(inputRefs.current[i + 1]!,0)
-                    }, 0);
-                }
-            }
-        }else if (e.key === "Backspace") {
-            const caretPosition =  getCaretPosition(inputRefs.current[i]!);
-            const {start,end} = getSelectionRangeInElement(inputRefs.current[i]!)
-            if (start===end && caretPosition === 0 && i > 0) {
+            const caretPosition = getCaretPosition(inputRefs.current[i]!);
+            const { plainText } = block;
+    
+            const leftText = plainText.slice(0, caretPosition);
+            const rightText = plainText.slice(caretPosition);
+    
+            const newLeftBlock: Block = {
+                plainText: leftText,
+                richTexts: [{ text: leftText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }]
+            };
+            const newRightBlock: Block = {
+                plainText: rightText,
+                richTexts: [{ text: rightText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }]
+            };
+    
+            setBlocks((prev) => {
+                const withoutCurrent = swapArrayElements(prev, i, newLeftBlock);
+                return addElements(withoutCurrent, i + 1, newRightBlock);
+            });
+            setIsFocused((prev) => addElements(prev, i + 1, false));
+    
+            setTimeout(() => {
+                inputRefs.current[i + 1]?.focus();
+                setCaretPosition(inputRefs.current[i + 1]!, 0);
+            }, 0);
+        } else if (e.key === "Backspace") {
+            const caretPosition = getCaretPosition(inputRefs.current[i]!);
+            const { start, end } = getSelectionRangeInElement(inputRefs.current[i]!);
+    
+            if (start === end && caretPosition === 0 && i > 0) {
                 e.preventDefault();
-                const temp = blocks[i - 1].length
+                const prevBlock = blocks[i - 1];
+                const mergedText = prevBlock.plainText + block.plainText;
+    
+                const newBlock: Block = {
+                    plainText: mergedText,
+                    richTexts: [
+                        { text: mergedText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }
+                    ]
+                };
+    
                 setBlocks((prev) => {
-                    const newText = prev[i - 1] + prev[i];
                     const newBlocks = [...prev];
-                    newBlocks.splice(i - 1, 2, newText);
+                    newBlocks.splice(i - 1, 2, newBlock);
                     return newBlocks;
                 });
-        
+    
                 setIsFocused((prev) => removeElement(prev, i));
-                setTimeout(()=>{
+    
+                setTimeout(() => {
                     inputRefs.current[i - 1]?.focus();
-                    setCaretPosition(inputRefs.current[i - 1]!,temp)
+                    setCaretPosition(inputRefs.current[i - 1]!, prevBlock.plainText.length);
                 }, 0.01);
             }
-        }else{
-            setTimeout(() => {
-                setCaretPosition(inputRefs.current[i]!, blocks[i].length + 1);
-              }, 0.01);
         }
-    }
+    };
+    
 
-    return {handleChange,handleOnFocus,handleOnBlur,handleKeyDown,isFocused,blocks,inputRefs}
+    return {
+        handleOnInput,
+        handleOnFocus,
+        handleOnBlur,
+        handleKeyDown,
+        isFocused,
+        blocks,
+        inputRefs,
+        setBlocks,
+        handleBold,
+        setIsComposing,
+        handleUnderline
+    }
 }
 
 export default useEditor;
