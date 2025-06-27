@@ -11,6 +11,7 @@ import EditProfile from "./pages/manage/editProfile";
 import FQA from "./pages/fqa";
 import AIDiagnosis from "./pages/ai-diagnosis";
 import EditPage from "./pages/manage/pageEdit";
+import Result from './pages/result';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/result" element={<Result />} />
         <Route path="/login" element={<Login />} />
         <Route path="/request" element={<Request />} />
         <Route path="/comp" element={<Comp />} />
