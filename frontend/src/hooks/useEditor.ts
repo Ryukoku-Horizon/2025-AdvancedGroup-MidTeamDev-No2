@@ -3,15 +3,17 @@ import { getCaretPosition, getSelectionRangeInElement, setCaretPosition } from "
 import { Block } from "../types/block";
 import { parseHtmlToRichTexts, richTextsToHtml } from "../libs/richTextHelper";
 import { applyBoldToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
+import { handleBackSpaceKey, handleEnterKey } from "../libs/keyboardOperation";
 
 const useEditor=()=>{
-    const emptyBlock:Block = {
+    const initBlock:Block = {
         plainText:"",
-        richTexts:[{text:"",decoration:{bold:false,underline:false,h1:false,h2:false,h3:false},href:null}]
+        richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
+        // type:"paragraph"
     }
 
     const [isFocused, setIsFocused] = useState<boolean[]>([true]);
-    const [blocks,setBlocks] = useState<Block[]>([emptyBlock])
+    const [blocks,setBlocks] = useState<Block[]>([initBlock])
     const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isComposing, setIsComposing] = useState(false);
 
@@ -118,29 +120,12 @@ const useEditor=()=>{
             }
         } else if (e.key === "Enter") {
             if (isComposing) return;
-
-            e.preventDefault();
-            const caretPosition = getCaretPosition(inputRefs.current[i]!);
-            const { plainText } = block;
-    
-            const leftText = plainText.slice(0, caretPosition);
-            const rightText = plainText.slice(caretPosition);
-    
-            const newLeftBlock: Block = {
-                plainText: leftText,
-                richTexts: [{ text: leftText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }]
-            };
-            const newRightBlock: Block = {
-                plainText: rightText,
-                richTexts: [{ text: rightText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }]
-            };
-    
+            const {newLeftBlock,newRightBlock} = handleEnterKey(e,block,inputRefs.current[i])
             setBlocks((prev) => {
                 const withoutCurrent = swapArrayElements(prev, i, newLeftBlock);
                 return addElements(withoutCurrent, i + 1, newRightBlock);
             });
             setIsFocused((prev) => addElements(prev, i + 1, false));
-    
             setTimeout(() => {
                 inputRefs.current[i + 1]?.focus();
                 setCaretPosition(inputRefs.current[i + 1]!, 0);
@@ -148,27 +133,17 @@ const useEditor=()=>{
         } else if (e.key === "Backspace") {
             const caretPosition = getCaretPosition(inputRefs.current[i]!);
             const { start, end } = getSelectionRangeInElement(inputRefs.current[i]!);
-    
+        
             if (start === end && caretPosition === 0 && i > 0) {
-                e.preventDefault();
-                const prevBlock = blocks[i - 1];
-                const mergedText = prevBlock.plainText + block.plainText;
-    
-                const newBlock: Block = {
-                    plainText: mergedText,
-                    richTexts: [
-                        { text: mergedText, decoration: { bold: false, underline: false,h1:false,h2:false,h3:false }, href: null }
-                    ]
-                };
-    
+                const {newBlock,prevBlock} = handleBackSpaceKey(e,blocks,i);
+        
                 setBlocks((prev) => {
                     const newBlocks = [...prev];
-                    newBlocks.splice(i - 1, 2, newBlock);
+                    newBlocks.splice(i - 1, 2, newBlock); // prev + current を1つに
                     return newBlocks;
                 });
-    
                 setIsFocused((prev) => removeElement(prev, i));
-    
+        
                 setTimeout(() => {
                     inputRefs.current[i - 1]?.focus();
                     setCaretPosition(inputRefs.current[i - 1]!, prevBlock.plainText.length);

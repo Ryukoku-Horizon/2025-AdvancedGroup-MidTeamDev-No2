@@ -1,6 +1,7 @@
 export type Block={
     plainText:string;
     richTexts:RichText[];
+    // type:Type;
 }
 
 export type RichText={
@@ -9,10 +10,9 @@ export type RichText={
     href:string | null;
 }
 
-type Decoration={
+export type Decoration={
     bold:boolean;
     underline:boolean;
-    h1:boolean;
-    h2:boolean;
-    h3:boolean;
 }
+
+type Type="paragraph" | "header1" | "header2" | "header3"
