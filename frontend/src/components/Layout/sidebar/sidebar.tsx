@@ -13,7 +13,7 @@ type Props={
 }
 
 const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
-  const {user,loading} = useFirebaseUser()
+  const {user,loading} = useFirebaseUser();
 
   return (
     <Modal
@@ -33,7 +33,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
           {!loading && <>
             {!user && <SidebarLink to="/login" label="ログイン" />}
             {!user && <SidebarLink to="/request" label="サークル掲載申請" />}
-            {user && <SidebarLink to={`/manage${user.uid}`} label='管理ページ' />}
+            {user && <SidebarLink to={`/manage/${user.uid}`} label='管理ページ' />}
           </>}
           {loading && <CircleLoader size={32} />}
         </CommonToggle>

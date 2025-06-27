@@ -20,10 +20,11 @@ import SideMenu from "../../components/pageComponents/manage/sidemenu";
 import RequireLoginMessage from "../../components/common/messageBord/requireLoginMessage";
 import CenterLoader from "../../components/common/loader/centerLoader";
 import CommonFileInput from "../../components/common/textField/commonFileInput";
+import { fileToBase64 } from "../../libs/handleImage";
 
 const EditProfile=()=>{
     const { id } = useParams();
-    const {user,loading,logout} = useFirebaseUser();
+    const {user,loading} = useFirebaseUser();
     const {edit,errMessage,loading:editLoading,success} = useEditCircle(id)
     const {circleData,loading:loadData} = useSingleCircleData(id)
     const navigate = useNavigate()
@@ -61,6 +62,10 @@ const EditProfile=()=>{
     const handleEdit=async()=>{
         if(circleData && name!=="" && detail!=="" && selectedCampuses.length!==0){
             if((dateType==="毎週" && selectedWeek.length!==0) || (dateType!=="毎週" && timeDetail!=="")){
+                let base64:string | undefined;
+                if(image){
+                    base64 = await fileToBase64(image)
+                }
                 await edit({
                     id:circleData.id,
                     name,
@@ -76,7 +81,7 @@ const EditProfile=()=>{
                         } : timeDetail
                     },
                     image:""
-                })
+                },base64 ? base64 : undefined)
             }
         }
     }
@@ -85,7 +90,7 @@ const EditProfile=()=>{
         <Layout>
             {!user && !loading && <RequireLoginMessage />}
             <div className="manage-container">
-                <TopBar logout={logout} />
+            <TopBar back={()=>{navigate(`/manage/${id}`)}} />
                 <div className="main-content">
                     <SideMenu id={id} />
                     <MainScreen>
@@ -95,7 +100,7 @@ const EditProfile=()=>{
                             <NameInput name={name} setName={setName} />
                             <DetailInput detail={detail} setDetail={setDetail} />
                             <DateTypeSelect dateType={dateType} setDateType={setDateType} />
-                            {dateType==="毎週" && <div className="border flex-1 p-4">
+                            {dateType==="毎週" && <div className="">
                                 <WeekSelect selectedWeek={selectedWeek} setSelectedWeek={setSelectedWeek} />
                                 <SelectTime 
                                     selectedStartTime={selectedStartTime} 

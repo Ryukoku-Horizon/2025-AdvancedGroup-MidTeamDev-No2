@@ -15,7 +15,7 @@ const CircleInfo=({circleData}:Props)=>{
                     <Link to={`/manage/${circleData.id}/editProfile`} className="link">こちら</Link>
                     から選択できます）</span>}
                 <img
-                src={circleData.image!=="" ? circleData.image : "/no-image.png"}
+                src={typeof circleData.image==="string" && circleData.image!=="" ? circleData.image : "/no-image.png"}
                 alt={`${circleData.name} のカバー画像`}
                 className="circle-cover"
                 />

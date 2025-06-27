@@ -1,12 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout"
 import useFirebaseUser from "../../hooks/useFirebase";
 import useEditor from "../../hooks/useEditor";
 import useDecorationMenu from "../../hooks/useDecorationMenu";
+import TopBar from "../../components/pageComponents/manage/topbar";
 
 const EditPage=()=>{
     const { id } = useParams();
     const {user,loading,logout} = useFirebaseUser();
+    const navigate = useNavigate();
     const {
         handleOnInput,
         handleKeyDown,
@@ -24,6 +26,7 @@ const EditPage=()=>{
     return (
         <Layout>
             <div className="manage-container">
+                <TopBar back={()=>{navigate(`/manage/${id}`)}} />
                 <div className="main-content">
                     <section className="circle-info">
                     {blocks.map((block, i) => (

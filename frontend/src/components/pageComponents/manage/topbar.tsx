@@ -1,14 +1,20 @@
+import CancelButton from "../../common/Btn/cancelBtn/cancelBtn";
+
 type Props={
-    logout: () => Promise<void>
+    logout?: () => Promise<void>
+    back?:()=>void;
 }
 
-const TopBar=({logout}:Props)=>{
+const TopBar=({logout,back}:Props)=>{
     return (
         <div className="top-bar">
-                <button onClick={() => {logout()}} className="logout-button">
-                ログアウト
-                </button>
-            </div>
+            {logout && <button onClick={() => {logout()}} className="logout-button">
+            ログアウト
+            </button>}
+            {back && <CancelButton onClick={()=>{back()}}>
+                戻る
+            </CancelButton>}
+        </div>
     )
 }
 

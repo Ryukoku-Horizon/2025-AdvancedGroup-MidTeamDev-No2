@@ -13,7 +13,8 @@ const CirclePage=()=>{
                 <div className="main-content">
                     <section className="circle-info">
                     {!loading && circleData && <div>
-                        <p>{circleData.name}</p>
+                        <h1>{circleData.name}</h1>
+                        <img src={circleData.image!=="" ? circleData.image : "/no-image.png"} />
                         <p>基本情報</p>
                         <p>活動内容：{circleData.detail}</p>
                         <div className="flex gap-2">

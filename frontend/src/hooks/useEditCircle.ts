@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY} from "../constants/supabase";
 import { useNavigate } from "react-router-dom"
 import { Circle } from "../types/Circle";
+import { fileToBase64 } from "../libs/handleImage";
 
 const useEditCircle=(id:string | undefined)=>{
     const [errMessage,setErrMessage] = useState("");
@@ -17,7 +18,7 @@ const useEditCircle=(id:string | undefined)=>{
         }
     },[success])
 
-    const edit=async(circleData:Circle)=>{
+    const edit=async(circleData:Circle,base64?:string)=>{
         setLoading(true)
         try{
             const res = await fetch(`${SUPABASE_URL}/functions/v1/edit_circle`, {
@@ -29,7 +30,8 @@ const useEditCircle=(id:string | undefined)=>{
                     name:circleData.name,
                     location:circleData.location,
                     activeDate:circleData.activeDate,
-                    detail:circleData.detail 
+                    detail:circleData.detail,
+                    base64
                 })
             });
             if(!res.ok){
