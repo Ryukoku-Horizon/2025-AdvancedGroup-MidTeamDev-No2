@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 
-const AIsearch=()=>{
+const AIDiagnosis=()=>{
     return (
         <Layout>
             <div className="center-posi text-center font-xl p-6 border radius-md pt-1 box-shadow">
@@ -16,4 +16,4 @@ const AIsearch=()=>{
     )
 }
 
-export default AIsearch;
+export default AIDiagnosis;

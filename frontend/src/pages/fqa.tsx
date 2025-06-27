@@ -29,7 +29,7 @@ const FQA = () => {
         { question: "Q. 質問タイトル", answer: "A. 回答" },
       ],
     },
-  ];
+    ];
 
   return (
     <Layout>

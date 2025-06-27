@@ -9,7 +9,7 @@ import ManageCircle from "./pages/manage/circle";
 import CirclePage from "./pages/circles/circlePage";
 import EditProfile from "./pages/manage/editProfile";
 import FQA from "./pages/fqa";
-import AIsearch from "./pages/ai";
+import AIDiagnosis from "./pages/ai-diagnosis";
 import EditPage from "./pages/manage/pageEdit";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
         <Route path="/manage/:id/editProfile" element={<EditProfile />} />
         <Route path="/manage/:id/editPage" element={<EditPage />} />
         <Route path="/circles/:id" element={<CirclePage />} />
-        <Route path="/ai" element={<AIsearch />} />
+        <Route path="/ai-diagnosis" element={<AIDiagnosis />} />
       </Routes>
     </BrowserRouter>
   );

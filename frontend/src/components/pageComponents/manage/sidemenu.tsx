@@ -11,7 +11,7 @@ const SideMenu=({id}:Props)=>{
             <h3 className="sidebar-title">メニュー</h3>
             <Link to={`/manage/${id}/editPage`}>ページを編集</Link>
             <Link to={`/manage/${id}/editProfile`}>プロフィール編集</Link>
-            <Link to={`/`}>ページを閲覧</Link>
+            <Link to={`/circles/${id}`}>ページを閲覧</Link>
         </aside>
     )
 }
