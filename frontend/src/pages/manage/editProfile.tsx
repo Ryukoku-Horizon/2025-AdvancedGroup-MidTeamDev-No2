@@ -96,7 +96,7 @@ const EditProfile=()=>{
                     <MainScreen>
                         {!loadData && circleData && <div className="flex flex-col items-start">
                             <Link to={`/manage/${id}`} className="back-link mb-3">← 戻る</Link>
-                            <CommonFileInput setFile={setImage} />
+                            <CommonFileInput setFile={setImage} circleImage={circleData.image} />
                             <NameInput name={name} setName={setName} />
                             <DetailInput detail={detail} setDetail={setDetail} />
                             <DateTypeSelect dateType={dateType} setDateType={setDateType} />

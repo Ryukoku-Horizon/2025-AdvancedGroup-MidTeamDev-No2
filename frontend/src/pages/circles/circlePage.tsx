@@ -2,6 +2,7 @@ import Layout from "../../components/Layout/Layout";
 import { useParams } from "react-router-dom";
 import useCircleData from "../../hooks/useSingleCircle";
 import CenterLoader from "../../components/common/loader/centerLoader";
+import CircleInfo from "../../components/pageComponents/manage/circle/circleInfo";
 
 const CirclePage=()=>{
     const { id } = useParams();
@@ -13,21 +14,7 @@ const CirclePage=()=>{
                 <div className="main-content">
                     <section className="circle-info">
                     {!loading && circleData && <div>
-                        <h1>{circleData.name}</h1>
-                        <img src={circleData.image!=="" ? circleData.image : "/no-image.png"} />
-                        <p>基本情報</p>
-                        <p>活動内容：{circleData.detail}</p>
-                        <div className="flex gap-2">
-                            <p>活動キャンパス</p>
-                            {circleData.location.map((item)=>(
-                                <p>{item}</p>
-                            ))}
-                        </div>
-                        <div>
-                            {circleData.activeDate.type==="毎週" && <p>
-                                {typeof circleData.activeDate.data!=="string" && circleData.activeDate.data.week.map((item)=>(<span>{item}</span>))}
-                            </p>}
-                        </div>
+                        <CircleInfo circleData={circleData} />
                     </div>}
                     {loading && <CenterLoader />}
                     </section>

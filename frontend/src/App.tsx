@@ -11,10 +11,12 @@ import EditProfile from "./pages/manage/editProfile";
 import FQA from "./pages/fqa";
 import AIDiagnosis from "./pages/ai-diagnosis";
 import EditPage from "./pages/manage/pageEdit";
+import ScrollToTop from "./components/scrollToTop";
 
 function App() {
   return (
     <BrowserRouter basename="/ryukoku-circle-hub">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />

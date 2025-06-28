@@ -3,12 +3,13 @@ import "./fileInput.css";
 
 type Props = {
   setFile: React.Dispatch<React.SetStateAction<File | null>>;
+  circleImage:string;
 };
 
-const CommonFileInput = ({ setFile }: Props) => {
+const CommonFileInput = ({ setFile,circleImage }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(circleImage!=="" ? circleImage : "/no-image.png");
 
   const handleClick = () => {
     inputRef.current?.click();
