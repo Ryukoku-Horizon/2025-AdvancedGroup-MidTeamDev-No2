@@ -1,6 +1,8 @@
 import useEditor from "../../../../hooks/useEditor";
 import Toolbar from "./toolbar";
 import TypeSelecter from "./typeSelecter";
+import "./editor.css"
+import { useState } from "react";
 
 const Editor=()=>{
     const {
@@ -14,8 +16,13 @@ const Editor=()=>{
         handleBold,
         setIsComposing,
         handleUnderline,
-        setType
-    } = useEditor()
+        setType,
+        hoverIndex,
+        setHoverIndex,
+        addNewBlock,
+        crrBlock
+    } = useEditor();
+    const [selectorIndex, setSelectorIndex] = useState<number | null>(null);
 
     return (
         <div className="editor">
@@ -23,18 +30,27 @@ const Editor=()=>{
 
                 return (
                     <div className="flex items-center"
-                        onFocus={() => handleOnFocus(i)}
-                        onBlur={() => handleOnBlur(i)}
+                        key={i}
+                        onMouseEnter={()=>{setHoverIndex(i)}}
+                        onMouseLeave={()=>{if(hoverIndex===i)setHoverIndex(null)}}
                     >
-                        {isFocused[i] && <TypeSelecter />}
+                        <TypeSelecter 
+                            index={i} 
+                            setType={setType} 
+                            isHover={hoverIndex===i} 
+                            addNewBlock={addNewBlock}
+                            isEmpty={block.plainText===""}
+                            setSelecterIndex={setSelectorIndex}
+                            isOpen={selectorIndex===i}
+                            />
                         <div
-                            key={i}
+                            key={`${i}-input`}
                             ref={(el) => {
                             inputRefs.current[i] = el;
                             }}
                             contentEditable
                             suppressContentEditableWarning
-                            className="editor-block"
+                            className={`editor-block ${block.type}`}
                             onCompositionStart={() => setIsComposing(true)}
                             onCompositionEnd={() => setIsComposing(false)}
                             spellCheck={false}
@@ -43,11 +59,19 @@ const Editor=()=>{
                                 handleOnInput(html,i)
                                 }}
                             onKeyDown={(e) => handleKeyDown(e, block, i)}
-                            data-placeholder={isFocused[i] ? "ここに入力してください" : ""}
+                            data-placeholder={(isFocused[i] && block.type==="paragraph") ? "ここに入力してください" :
+                            (block.type!=="paragraph") ? block.type : ""}
+                            onFocus={()=>{handleOnFocus(i)}}
+                            onBlur={()=>{handleOnBlur(i)}}
                         />
                     </div>
             )})}
-            <Toolbar handleBold={handleBold} handleUnderline={handleUnderline} />
+            <Toolbar 
+            handleBold={handleBold} 
+            handleUnderline={handleUnderline} 
+            setType={setType}
+            type={crrBlock?.type}
+            />
         </div>
     )
 }

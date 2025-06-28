@@ -16,14 +16,53 @@ const useEditor=()=>{
     const [blocks,setBlocks] = useState<Block[]>([initBlock])
     const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isComposing, setIsComposing] = useState(false);
+    const [hoverIndex,setHoverIndex] = useState<number | null>(null);
+    const [crrBlock,setCrrBlock] = useState<null | Block>(null)
 
-    const setType=(type:Type)=>{
-        const index = getSelectedBlockIndex(inputRefs.current);
-        if (index === null) return;
-        const target = blocks.find((_,i)=>i===index);
-        if(target){
-            const newBlock:Block = {...target,type}
-            setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
+    useEffect(()=>{
+        const crr = blocks.find((_,i)=>isFocused[i])
+        if(crr){
+            setCrrBlock(crr)
+        }else{
+            setCrrBlock(null)
+        }
+    },[isFocused])
+
+    useEffect(() => {
+        blocks.forEach((text, i) => {
+          const el = inputRefs.current[i];
+          const html = richTextsToHtml(text.richTexts) 
+          if(el && el.innerHTML !== html){
+            el.innerHTML =  html;
+          }
+        });
+      }, [blocks]);
+
+    const addNewBlock=(i:number)=>{
+        const newBlocks = addElements(blocks,i,initBlock)
+        setBlocks(newBlocks)
+        setIsFocused((prev) => addElements(prev, i, false));
+        setTimeout(() => {
+            inputRefs.current[i]?.focus();
+            setCaretPosition(inputRefs.current[i]!, 0);
+        }, 0);
+    }
+
+    const setType=(type:Type,index?:number)=>{
+        if(index){
+            const target = blocks.find((_,i)=>i===index);
+            if(target){
+                const newBlock:Block = {...target,type}
+                setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
+            }
+        }else{
+            const index = getSelectedBlockIndex(inputRefs.current);
+            if (index === null) return;
+            const target = blocks.find((_,i)=>i===index);
+            if(target){
+                const newBlock:Block = {...target,type}
+                setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
+            }
         }
     }
 
@@ -34,7 +73,7 @@ const useEditor=()=>{
         if(applyed){
             setBlocks(prev =>
                 prev.map((b, i) =>
-                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:"paragraph" } : b
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:b.type } : b
                 )
             );
         }
@@ -47,22 +86,11 @@ const useEditor=()=>{
         if(applyed){
             setBlocks(prev =>
                 prev.map((b, i) =>
-                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:"paragraph" } : b
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:b.type } : b
                 )
             );
         }
-    }
-
-    useEffect(() => {
-        blocks.forEach((text, i) => {
-          const el = inputRefs.current[i];
-          const html = richTextsToHtml(text.richTexts) 
-          if(el && el.innerHTML !== html){
-            el.innerHTML =  html;
-          }
-        });
-      }, [blocks]);
-      
+    } 
 
     function swapArrayElements<T>(array: T[], i: number, value:T): T[] {
         const newArray = [...array]; 
@@ -89,7 +117,7 @@ const useEditor=()=>{
         const newRichTexts = parseHtmlToRichTexts(html);
         const newPlain = newRichTexts.map(rt => rt.text).join("");
         setBlocks((prev) =>
-            prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts,type:"paragraph" } : b)
+            prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts,type:b.type } : b)
         );
     }
 
@@ -174,7 +202,11 @@ const useEditor=()=>{
         handleBold,
         setIsComposing,
         handleUnderline,
-        setType
+        setType,
+        hoverIndex,
+        setHoverIndex,
+        addNewBlock,
+        crrBlock
     }
 }
 
