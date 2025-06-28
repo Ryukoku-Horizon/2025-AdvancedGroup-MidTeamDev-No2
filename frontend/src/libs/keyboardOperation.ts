@@ -11,11 +11,13 @@ export const handleEnterKey=(e:React.KeyboardEvent<HTMLDivElement>,block:Block,i
 
     const newLeftBlock: Block = {
         plainText: leftRichTexts.map(rt => rt.text).join(""),
-        richTexts: leftRichTexts
+        richTexts: leftRichTexts,
+        type:block.type
     };
     const newRightBlock: Block = {
         plainText: rightRichTexts.map(rt => rt.text).join(""),
-        richTexts: rightRichTexts
+        richTexts: rightRichTexts,
+        type:"paragraph"
     };
     return {newLeftBlock,newRightBlock}
 }
@@ -30,7 +32,8 @@ export const handleBackSpaceKey=(e:React.KeyboardEvent<HTMLDivElement>,blocks:Bl
 
     const newBlock: Block = {
         plainText: mergedPlainText,
-        richTexts: mergedRichTexts
+        richTexts: mergedRichTexts,
+        type:blocks[i - 1].type
     };
     return {newBlock,prevBlock};
 }

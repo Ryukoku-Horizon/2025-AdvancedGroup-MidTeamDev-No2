@@ -20,7 +20,6 @@ const Toolbar=({handleBold,handleUnderline}:Props)=>{
         >
             <button onClick={()=>handleBold()}>太字</button>
             <button onClick={()=>handleUnderline()}>下線</button>
-            {/* 他の装飾ボタン */}
         </div>
     )
 }

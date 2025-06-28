@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getCaretPosition, getSelectionRangeInElement, setCaretPosition } from "../libs/caretHelper";
-import { Block } from "../types/block";
+import { Block, Type } from "../types/block";
 import { parseHtmlToRichTexts, richTextsToHtml } from "../libs/richTextHelper";
 import { applyBoldToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
 import { handleBackSpaceKey, handleEnterKey } from "../libs/keyboardOperation";
@@ -9,12 +9,23 @@ const useEditor=()=>{
     const initBlock:Block = {
         plainText:"",
         richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
+        type:"paragraph"
     }
 
     const [isFocused, setIsFocused] = useState<boolean[]>([true]);
     const [blocks,setBlocks] = useState<Block[]>([initBlock])
     const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isComposing, setIsComposing] = useState(false);
+
+    const setType=(type:Type)=>{
+        const index = getSelectedBlockIndex(inputRefs.current);
+        if (index === null) return;
+        const target = blocks.find((_,i)=>i===index);
+        if(target){
+            const newBlock:Block = {...target,type}
+            setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
+        }
+    }
 
     const handleBold=()=>{
         const index = getSelectedBlockIndex(inputRefs.current);
@@ -23,7 +34,7 @@ const useEditor=()=>{
         if(applyed){
             setBlocks(prev =>
                 prev.map((b, i) =>
-                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts } : b
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:"paragraph" } : b
                 )
             );
         }
@@ -36,7 +47,7 @@ const useEditor=()=>{
         if(applyed){
             setBlocks(prev =>
                 prev.map((b, i) =>
-                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts } : b
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:"paragraph" } : b
                 )
             );
         }
@@ -78,7 +89,7 @@ const useEditor=()=>{
         const newRichTexts = parseHtmlToRichTexts(html);
         const newPlain = newRichTexts.map(rt => rt.text).join("");
         setBlocks((prev) =>
-            prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts } : b)
+            prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts,type:"paragraph" } : b)
         );
     }
 
@@ -162,7 +173,8 @@ const useEditor=()=>{
         inputRefs,
         handleBold,
         setIsComposing,
-        handleUnderline
+        handleUnderline,
+        setType
     }
 }
 

@@ -1,7 +1,7 @@
 export type Block={
     plainText:string;
     richTexts:RichText[];
-    // type:Type;
+    type:Type;
 }
 
 export type RichText={
@@ -15,4 +15,4 @@ export type Decoration={
     underline:boolean;
 }
 
-type Type="paragraph" | "header1" | "header2" | "header3"
+export type Type="paragraph" | "heading1" | "heading2" | "heading3"
