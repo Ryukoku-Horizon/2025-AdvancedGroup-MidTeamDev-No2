@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useDecorationMenu=()=>{
+const useToolbar=()=>{
     const [showToolbar, setShowToolbar] = useState(false);
     const [toolbarPosition, setToolbarPosition] = useState<{ top: number, left: number }>({ top: 0, left: 0 });
 
@@ -16,7 +16,7 @@ const useDecorationMenu=()=>{
           const rect = range.getBoundingClientRect();
       
           // ブロック外の選択は無視
-          const editorRoot = document.querySelector(".main-content");
+          const editorRoot = document.querySelector(".editor");
           if (!editorRoot || !editorRoot.contains(range.startContainer)) {
             setShowToolbar(false);
             return;
@@ -39,4 +39,4 @@ const useDecorationMenu=()=>{
     return {showToolbar,toolbarPosition}
 }
 
-export default useDecorationMenu
+export default useToolbar

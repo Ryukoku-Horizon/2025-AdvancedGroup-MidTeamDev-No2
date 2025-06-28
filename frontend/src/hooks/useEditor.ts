@@ -9,7 +9,6 @@ const useEditor=()=>{
     const initBlock:Block = {
         plainText:"",
         richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
-        // type:"paragraph"
     }
 
     const [isFocused, setIsFocused] = useState<boolean[]>([true]);
@@ -161,7 +160,6 @@ const useEditor=()=>{
         isFocused,
         blocks,
         inputRefs,
-        setBlocks,
         handleBold,
         setIsComposing,
         handleUnderline
