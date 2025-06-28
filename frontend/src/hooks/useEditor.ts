@@ -49,16 +49,18 @@ const useEditor=()=>{
     }
 
     const setType=(type:Type,index?:number)=>{
-        if(index){
-            const target = blocks.find((_,i)=>i===index);
+        if(index!==undefined){
+            const target = blocks[index]
             if(target){
                 const newBlock:Block = {...target,type}
                 setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
             }
         }else{
             const index = getSelectedBlockIndex(inputRefs.current);
+            console.log(type);
+            console.log(index)
             if (index === null) return;
-            const target = blocks.find((_,i)=>i===index);
+            const target = blocks[index]
             if(target){
                 const newBlock:Block = {...target,type}
                 setBlocks((prev)=>swapArrayElements(prev,index,newBlock))
@@ -158,16 +160,18 @@ const useEditor=()=>{
             }
         } else if (e.key === "Enter") {
             if (isComposing) return;
-            const {newLeftBlock,newRightBlock} = handleEnterKey(e,block,inputRefs.current[i])
-            setBlocks((prev) => {
-                const withoutCurrent = swapArrayElements(prev, i, newLeftBlock);
-                return addElements(withoutCurrent, i + 1, newRightBlock);
-            });
-            setIsFocused((prev) => addElements(prev, i + 1, false));
-            setTimeout(() => {
-                inputRefs.current[i + 1]?.focus();
-                setCaretPosition(inputRefs.current[i + 1]!, 0);
-            }, 0);
+            if(!e.shiftKey){
+                const {newLeftBlock,newRightBlock} = handleEnterKey(e,block,inputRefs.current[i])
+                setBlocks((prev) => {
+                    const withoutCurrent = swapArrayElements(prev, i, newLeftBlock);
+                    return addElements(withoutCurrent, i + 1, newRightBlock);
+                });
+                setIsFocused((prev) => addElements(prev, i + 1, false));
+                setTimeout(() => {
+                    inputRefs.current[i + 1]?.focus();
+                    setCaretPosition(inputRefs.current[i + 1]!, 0);
+                }, 0);
+            }
         } else if (e.key === "Backspace") {
             const caretPosition = getCaretPosition(inputRefs.current[i]!);
             const { start, end } = getSelectionRangeInElement(inputRefs.current[i]!);

@@ -1,3 +1,4 @@
+import { blockTypes } from "../../../../constants/blockTypes";
 import useToolbar from "../../../../hooks/useToolbar";
 import { Type } from "../../../../types/block";
 import "./toolbar.css"
@@ -23,10 +24,13 @@ const Toolbar=({handleBold,handleUnderline,type,setType}:Props)=>{
         >
             <button onClick={()=>handleBold()}>太字</button>
             <button onClick={()=>handleUnderline()}>下線</button>
-            <select value={type ?? "paragraph"} onChange={(e)=>{setType(e.target.value as Type)}}>
-                <option value="paragraph">テキスト</option>
-                <option value="heading1">タイトル１</option>
-                <option value="heading2">タイトル２</option>
+            <select value={type} onChange={(e)=>{
+                const value = e.target.value as Type;
+                setType(value)
+                }}>
+                {blockTypes.map((block)=>(
+                    <option value={block.type}>{block.label}</option>
+                ))}
             </select>
         </div>
     )

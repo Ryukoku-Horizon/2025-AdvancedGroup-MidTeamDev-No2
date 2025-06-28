@@ -4,6 +4,7 @@ import TopBar from "../../components/pageComponents/manage/topbar";
 import useSingleCircleData from "../../hooks/useSingleCircle";
 import Editor from "../../components/pageComponents/manage/editPage/editor";
 import Title from "../../components/common/title/title";
+import CenterLoader from "../../components/common/loader/centerLoader";
 
 const EditPage=()=>{
     const { id } = useParams();
@@ -19,6 +20,7 @@ const EditPage=()=>{
                         <Title text={circleData.name} />
                         <Editor />
                     </section>}
+                    {dataLoad && <CenterLoader />}
                 </div>
             </div>
         </Layout>

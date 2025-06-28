@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import "./selecter.css";
 import { Type } from "../../../../types/block";
+import { blockTypes } from "../../../../constants/blockTypes";
 
 type Props = {
   index: number;
@@ -58,38 +59,23 @@ const TypeSelecter = ({ index, setType, isHover,addNewBlock,isEmpty,isOpen,setSe
         +
       </button>
 
+
       {isOpen && (
         <div
         className="dropdown">
-          <div
+          {blockTypes.map((block)=>(
+            <div
             className="dropdown-item"
             onClick={() => {
               setTimeout(() => {
-                setType("heading1", index);
+                setType(block.type, index);
                 setSelecterIndex(null);
               }, 0);
             }}
           >
-            見出し1
+            {block.label}
           </div>
-          <div
-            className="dropdown-item"
-            onClick={() => {
-              setType("heading2", index);
-              setSelecterIndex(null);
-            }}
-          >
-            見出し2
-          </div>
-          <div
-            className="dropdown-item"
-            onClick={() => {
-              setType("paragraph", index);
-              setSelecterIndex(null);
-            }}
-          >
-            段落
-          </div>
+          ))}
         </div>
       )}
 
