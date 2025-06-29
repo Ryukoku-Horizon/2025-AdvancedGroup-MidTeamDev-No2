@@ -34,7 +34,6 @@ const Editor=({blocks,setBlocks}:Props)=>{
     return (
         <div className="editor">
             {blocks.map((block, i) => {
-
                 return (
                     <div className="flex items-center"
                         key={i}

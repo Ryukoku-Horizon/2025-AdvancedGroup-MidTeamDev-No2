@@ -1,10 +1,11 @@
 type Props={
     text:string;
+    className?:string;
 }
 
-const Title=({text}:Props)=>{
+const Title=({text,className}:Props)=>{
     return (
-        <h1 className="font-4xl">{text}</h1>
+        <p className={`font-7xl bold ${className}`}>{text}</p>
     )
 }
 

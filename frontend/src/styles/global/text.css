@@ -25,6 +25,21 @@
 .font-4xl{
     font-size: 2.25rem;
 }
+.font-5xl{
+    font-size: 2.5rem;
+}
+.font-6xl{
+    font-size: 2.75rem;
+}
+.font-7xl{
+    font-size: 3rem;
+}
+.font-8xl{
+    font-size: 3.25rem;
+}
+.font-9xl{
+    font-size: 3.5rem;
+}
 .font-50{
     font-size: 50px;
 }

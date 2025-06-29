@@ -38,9 +38,11 @@ const EditPage=()=>{
                 {errMessage!=="" && <p>{errMessage}</p>}
                 {loading && !success && <ClipLoader color="#36d7b7" size={50}  />}
                 {success && <SuccessCheck size={50} />}
-                <div className="main-content">
+                <div className="main-content relative">
                     {!dataLoad && circleData && <section className="circle-info">
-                        <Title text={circleData.name} />
+                        {circleData.image!==""&& <img src={circleData.image} className="circle-cover mb-2" />}
+                        <Title text={circleData.name} className={circleData.image!=="" ? "absolute t-40" : ""} />
+                        <div className="border-b h-1 border-gray-2" />
                         <Editor blocks={blocks} setBlocks={setBlocks} />
                     </section>}
                     {(dataLoad || pageLoad) && <CenterLoader />}
