@@ -26,7 +26,8 @@ const Editor=({blocks,setBlocks}:Props)=>{
         hoverIndex,
         setHoverIndex,
         addNewBlock,
-        crrBlock
+        crrBlock,
+        handleColor
     } = useEditor(blocks,setBlocks);
     const [selectorIndex, setSelectorIndex] = useState<number | null>(null);
 
@@ -77,6 +78,7 @@ const Editor=({blocks,setBlocks}:Props)=>{
             handleUnderline={handleUnderline} 
             setType={setType}
             type={crrBlock?.type}
+            handleColor={handleColor}
             />
         </div>
     )

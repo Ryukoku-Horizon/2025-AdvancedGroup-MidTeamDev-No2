@@ -18,7 +18,7 @@ const EditPage=()=>{
     const navigate = useNavigate();
     const initBlock:Block = {
         plainText:"",
-        richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
+        richTexts:[{text:"",decoration:{bold:false,underline:false,color:"black"}}],
         type:"paragraph"
     }
     const [blocks, setBlocks] = useState<Block[]>([initBlock]);

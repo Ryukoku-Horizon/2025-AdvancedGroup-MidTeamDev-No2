@@ -7,15 +7,16 @@ export type Block={
 export type RichText={
     text:string;
     decoration:Decoration;
-    href:string | null;
 }
 
 export type Decoration={
     bold:boolean;
     underline:boolean;
+    color:Color;
 }
 
-export type Type="paragraph" | "heading1" | "heading2" | "heading3"
+export type Type="paragraph" | "heading1" | "heading2" | "heading3";
+export type Color="black" | "gray" | "red" | "blue" | "yellow" | "skyblue" | "brown" | "pink"
 
 export type BlockEntity={
     id?:number;

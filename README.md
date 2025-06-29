@@ -11,6 +11,7 @@
 ## 起動方法
 
 ルートディレクトリで`docker compose up`、または`docker compose up --build`を実行
+
 ブラウザで`http://localhost:8000/ryukoku-circle-hub`にアクセス
 
 ## 主な使用技術
@@ -43,14 +44,22 @@
 |   |   |   ├── request.tsx - 申請ページ
 |   |   |   ├── comp.tsx - 申請完了ページ
 |   |   |   ├── fqa.tsx - よくある質問ページ
-|   |   |   ├── 404.js - 404エラーページ
+|   |   |   ├── ai-diagnosis.tsx - ai診断ページ
+|   |   |   ├── comp.tsx - 申請完了ページ
+|   |   |   ├── circles/
+|   |   |   |   └── circlePage.tsx - サークル紹介ページ
+|   |   |   ├── manage/
+|   |   |   |   ├── circle.tsx - サークル管理ページ
+|   |   |   |   ├── editProfile.tsx - サークルプロフィール編集ページ
+|   |   |   |   └── pageEdit.tsx - サークルページ編集ページ 
 |   |   |   └── admin/
 |   |   |       └── index.tsx - adminページ
 |   |   ├── styles/
 |   |   |   └── global/ 
 |   |   └──types/
+|   |       ├── block.ts
 |   |       └── Circle.ts
-|   ├── dockerfile
+|   ├── Dockerfile
 |   └── package.json
 ├── backend/ - バックエンド
 |   └── supabase/

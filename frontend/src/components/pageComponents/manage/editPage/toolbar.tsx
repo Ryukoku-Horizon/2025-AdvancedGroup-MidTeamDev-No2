@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { blockTypes } from "../../../../constants/blockTypes";
+import { Colors } from "../../../../constants/colors";
 import useToolbar from "../../../../hooks/useToolbar";
-import { Type } from "../../../../types/block";
+import { Color, Type } from "../../../../types/block";
 import "./toolbar.css"
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -9,10 +11,16 @@ type Props={
     handleUnderline:()=>void;
     type?:Type;
     setType: (type: Type, index?: number | undefined) => void;
+    handleColor:(color:Color)=>void;
 }
 
-const Toolbar=({handleBold,handleUnderline,type,setType}:Props)=>{
-    const {showToolbar,toolbarPosition} = useToolbar()
+const Toolbar=({handleBold,handleUnderline,type,setType,handleColor}:Props)=>{
+    const {showToolbar,toolbarPosition} = useToolbar();
+    const [color,setColor] = useState<string>("")
+
+    useEffect(()=>{
+        setColor("")
+    },[showToolbar])
 
     return (
         <AnimatePresence>
@@ -35,6 +43,16 @@ const Toolbar=({handleBold,handleUnderline,type,setType}:Props)=>{
                         }}>
                         {blockTypes.map((block)=>(
                             <option value={block.type}>{block.label}</option>
+                        ))}
+                    </select>
+                    <select value={color} onChange={(e)=>{
+                        const value = e.target.value as Color;
+                        handleColor(value);
+                        setColor(value)
+                    }}> 
+                        <option value={""}>色</option>
+                        {Colors.map((item)=>(
+                            <option value={item.color}>{item.label}</option>
                         ))}
                     </select>
                 </motion.div>

@@ -9,3 +9,12 @@ export const blockToEntity=(block:Block,circleId:string):BlockEntity=>{
         circleId
     }
 }
+
+export const entityToBlock=(entity:BlockEntity):Block=>{
+    const {plainText,richTexts} = JSON.parse(entity.content)
+    return {
+        type:entity.type,
+        plainText,
+        richTexts
+    }
+}

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { getCaretPosition, getSelectionRangeInElement, setCaretPosition } from "../libs/caretHelper";
-import { Block, Type } from "../types/block";
+import { Block, Color, Type } from "../types/block";
 import { parseHtmlToRichTexts, richTextsToHtml } from "../libs/richTextHelper";
-import { applyBoldToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
+import { applyBoldToSelection, applyColorToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
 import { handleBackSpaceKey, handleEnterKey } from "../libs/keyboardOperation";
 
 const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<Block[]>>)=>{
     const initBlock:Block = {
         plainText:"",
-        richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
+        richTexts:[{text:"",decoration:{bold:false,underline:false,color:"black"}}],
         type:"paragraph"
     }
 
@@ -67,6 +67,19 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
         }
     }
 
+    const handleColor=(color:Color)=>{
+        const index = getSelectedBlockIndex(inputRefs.current);
+        if (index === null) return;
+        const applyed = applyColorToSelection(inputRefs.current[index]!,blocks,index,color);
+        if(applyed){
+            setBlocks(prev =>
+                prev.map((b, i) =>
+                  i === index ? { plainText: applyed.plainText, richTexts: applyed.richTexts,type:b.type } : b
+                )
+            );
+        }
+    }
+
     const handleBold=()=>{
         const index = getSelectedBlockIndex(inputRefs.current);
         if (index === null) return;
@@ -120,6 +133,10 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
         setBlocks((prev) =>
             prev.map((b, index) => index === i ? { plainText: newPlain, richTexts: newRichTexts,type:b.type } : b)
         );
+        setTimeout(()=>{
+            if( blocks[i].plainText.length===0)
+            setCaretPosition(inputRefs.current[i]!, blocks[i].plainText.length + 1);
+        },1)
     }
 
     const handleOnFocus=(i:number)=>{
@@ -209,7 +226,8 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
         hoverIndex,
         setHoverIndex,
         addNewBlock,
-        crrBlock
+        crrBlock,
+        handleColor
     }
 }
 

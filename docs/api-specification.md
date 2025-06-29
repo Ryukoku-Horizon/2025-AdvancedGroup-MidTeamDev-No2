@@ -219,3 +219,72 @@ Circleテーブルのデータを編集する
 	error:"条件（match）が無効です"
 }
 ```
+
+### エンドポイント
+
+- POST `/functions/v1/insert_pageData`
+
+### 概要
+
+pageDataテーブルにデータを挿入する
+
+### リクエスト
+
+- blocks（{type,content,circleId}[]）
+- circleId
+
+### レスポンス
+
+成功時
+
+```json
+{
+  success:true
+}
+```
+
+失敗時（例）
+
+```json
+{
+	success:false,
+	error:"circleが見つかりません"
+}
+```
+
+### エンドポイント
+
+- POST `/functions/v1/get_pageData`
+
+### 概要
+
+pageDataテーブルからデータを取得する
+
+### リクエスト
+
+- match（条件）
+    - 例：{”id”:1}（idが1のレコード取得）
+- select（取得するフィールド）
+    - 例：{”name”}（nameフィールドを取得）
+
+### レスポンス
+
+成功時
+
+```json
+{
+  id:1,
+  type:"heading1",
+  content: "",
+  circleId:"xxxx"
+}
+```
+
+失敗時（例）
+
+```json
+{
+	success:false,
+	error:"条件（match）が無効です"
+}
+```

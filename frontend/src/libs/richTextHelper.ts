@@ -1,19 +1,21 @@
 import { Decoration, RichText } from "../types/block";
 
 export function richTextsToHtml(richTexts: RichText[]): string {
-    return richTexts.map(({ text, decoration, href }) => {
-      let content = text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
-  
-      if (decoration.bold) content = `<strong>${content}</strong>`;
-      if (decoration.underline) content = `<u>${content}</u>`;
-      if (href) content = `<a href="${href}">${content}</a>`;
-  
-      return content;
-    }).join("");
+  return richTexts.map(({ text, decoration }) => {
+    let content = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    const styles = [];
+    if (decoration.bold) styles.push("font-weight:bold");
+    if (decoration.underline) styles.push("text-decoration:underline");
+    styles.push(`color:${decoration.color}`);
+
+    return `<span style="${styles.join(';')}">${content}</span>`;
+  }).join("");
 }
+
   
 export function parseHtmlToRichTexts(html: string): RichText[] {
     const temp = document.createElement("div");
@@ -21,12 +23,11 @@ export function parseHtmlToRichTexts(html: string): RichText[] {
   
     const richTexts: RichText[] = [];
   
-    function walk(node: Node, decorations:Decoration = { bold: false, underline: false }, href: string | null = null) {
+    function walk(node: Node, decorations:Decoration = { bold: false, underline: false,color:"black" }, href: string | null = null) {
       if (node.nodeType === Node.TEXT_NODE) {
         richTexts.push({
           text: node.textContent ?? "",
           decoration: { ...decorations },
-          href,
         });
       } else if (node.nodeType === Node.ELEMENT_NODE) {
         const el = node as HTMLElement;
@@ -46,7 +47,7 @@ export function parseHtmlToRichTexts(html: string): RichText[] {
     }
   
     return richTexts;
-  }
+}
   
 export function splitRichTextsAtPosition(richTexts: RichText[], position: number): [RichText[], RichText[]] {
     const left: RichText[] = [];
@@ -90,8 +91,7 @@ export function mergeRichTexts(a: RichText[], b: RichText[]): RichText[] {
     // 同じ装飾ならマージ
     if (
         lastA.decoration.bold === firstB.decoration.bold &&
-        lastA.decoration.underline === firstB.decoration.underline &&
-        lastA.href === firstB.href
+        lastA.decoration.underline === firstB.decoration.underline
     ) {
         const merged = {
             ...lastA,
