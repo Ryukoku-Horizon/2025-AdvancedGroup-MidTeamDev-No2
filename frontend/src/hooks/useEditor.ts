@@ -5,7 +5,7 @@ import { parseHtmlToRichTexts, richTextsToHtml } from "../libs/richTextHelper";
 import { applyBoldToSelection, applyUnderlineToSelection, getSelectedBlockIndex } from "../libs/decorationHelper";
 import { handleBackSpaceKey, handleEnterKey } from "../libs/keyboardOperation";
 
-const useEditor=()=>{
+const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<Block[]>>)=>{
     const initBlock:Block = {
         plainText:"",
         richTexts:[{text:"",decoration:{bold:false,underline:false},href:null}],
@@ -13,7 +13,6 @@ const useEditor=()=>{
     }
 
     const [isFocused, setIsFocused] = useState<boolean[]>([true]);
-    const [blocks,setBlocks] = useState<Block[]>([initBlock])
     const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isComposing, setIsComposing] = useState(false);
     const [hoverIndex,setHoverIndex] = useState<number | null>(null);

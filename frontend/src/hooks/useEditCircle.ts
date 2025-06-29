@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { SUPABASE_URL, SUPABASE_ANON_KEY} from "../constants/supabase";
 import { useNavigate } from "react-router-dom"
 import { Circle } from "../types/Circle";
-import { fileToBase64 } from "../libs/handleImage";
 
 const useEditCircle=(id:string | undefined)=>{
     const [errMessage,setErrMessage] = useState("");

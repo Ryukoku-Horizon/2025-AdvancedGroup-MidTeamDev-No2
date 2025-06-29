@@ -3,15 +3,21 @@ import Toolbar from "./toolbar";
 import TypeSelecter from "./typeSelecter";
 import "./editor.css"
 import { useState } from "react";
+import { blockTypes } from "../../../../constants/blockTypes";
+import { Block } from "../../../../types/block";
 
-const Editor=()=>{
+type Props={
+    blocks:Block[];
+    setBlocks: React.Dispatch<React.SetStateAction<Block[]>>;
+}
+
+const Editor=({blocks,setBlocks}:Props)=>{
     const {
         handleOnInput,
         handleOnFocus,
         handleOnBlur,
         handleKeyDown,
         isFocused,
-        blocks,
         inputRefs,
         handleBold,
         setIsComposing,
@@ -21,7 +27,7 @@ const Editor=()=>{
         setHoverIndex,
         addNewBlock,
         crrBlock
-    } = useEditor();
+    } = useEditor(blocks,setBlocks);
     const [selectorIndex, setSelectorIndex] = useState<number | null>(null);
 
     return (
@@ -60,7 +66,7 @@ const Editor=()=>{
                                 }}
                             onKeyDown={(e) => handleKeyDown(e, block, i)}
                             data-placeholder={(isFocused[i] && block.type==="paragraph") ? "ここに入力してください" :
-                            (block.type!=="paragraph") ? block.type : ""}
+                            (block.type!=="paragraph") ? blockTypes.find((item)=>item.type===block.type)?.label : ""}
                             onFocus={()=>{handleOnFocus(i)}}
                             onBlur={()=>{handleOnBlur(i)}}
                         />

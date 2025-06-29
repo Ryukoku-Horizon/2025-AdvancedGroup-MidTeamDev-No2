@@ -7,6 +7,7 @@
     display: flex;
     justify-content: start;
     align-items: start;
+    height: 100%;
 }
   
   .open-button {
@@ -15,6 +16,7 @@
     font-size: 18px;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    height: 100%;
   }
   
 .dropdown {
