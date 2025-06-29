@@ -5,16 +5,18 @@ import useSingleCircleData from "../../hooks/useSingleCircle";
 import Editor from "../../components/pageComponents/manage/editPage/editor";
 import Title from "../../components/common/title/title";
 import CenterLoader from "../../components/common/loader/centerLoader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Block } from "../../types/block";
 import useSavePageData from "../../hooks/useSavePageData";
 import { ClipLoader } from "react-spinners";
 import SuccessCheck from "../../components/common/checkmark/successCheck";
+import usePageData from "../../hooks/usePageData";
 
 const EditPage=()=>{
     const { id } = useParams();
     const {circleData,loading:dataLoad} = useSingleCircleData(id)
     const { success, loading, errMessage, save } = useSavePageData(id);
+    const {pageData,loading:pageLoad} = usePageData(id)
     const navigate = useNavigate();
     const initBlock:Block = {
         plainText:"",
@@ -22,6 +24,12 @@ const EditPage=()=>{
         type:"paragraph"
     }
     const [blocks, setBlocks] = useState<Block[]>([initBlock]);
+
+    useEffect(()=>{
+        if(pageData.length!==0){
+            setBlocks(pageData)
+        }
+    },[pageData])
 
     return (
         <Layout>
@@ -35,7 +43,7 @@ const EditPage=()=>{
                         <Title text={circleData.name} />
                         <Editor blocks={blocks} setBlocks={setBlocks} />
                     </section>}
-                    {dataLoad && <CenterLoader />}
+                    {(dataLoad || pageLoad) && <CenterLoader />}
                 </div>
             </div>
         </Layout>
