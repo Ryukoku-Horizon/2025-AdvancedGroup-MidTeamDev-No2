@@ -15,7 +15,7 @@ const useLogin=()=>{
                 navigate(`/manage/${user.uid}`)
             },1500);
         }
-    },[user])
+    },[user,navigate])
 
     const login=async(userId:string,password:string)=>{
         setLoading(true)

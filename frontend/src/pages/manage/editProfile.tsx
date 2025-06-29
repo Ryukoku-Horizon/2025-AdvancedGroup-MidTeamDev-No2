@@ -57,7 +57,7 @@ const EditProfile=()=>{
         if(!user && !loading){
             navigate("/")
         }
-    },[user])
+    },[user,loading,navigate])
 
     const handleEdit=async()=>{
         if(circleData && name!=="" && detail!=="" && selectedCampuses.length!==0){
@@ -117,7 +117,7 @@ const EditProfile=()=>{
                             {success && <SuccessCheck size={50} />}
                             {errMessage!=="" && <p>{errMessage}</p>}
                         </div>}
-                        {loading || loadData && <CenterLoader />}
+                        {(loading || loadData) && <CenterLoader />}
                     </MainScreen>
                 </div>
             </div>

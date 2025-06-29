@@ -1,8 +1,17 @@
 # 2025-AdvancedGroup-MidTeamDev-No2
 
+# 龍谷サークルHub
+
+![thumbnail.png](./docs/thumbnail.png)
+
 ## アプリ概要
 
 本アプリは、reactおよびsupabase edge functionsを使って作成した龍谷大学のサークル一覧を閲覧できるアプリ。サークルごとに管理者にアカウントを配り、紹介ページをサークルの管理者がそれぞれいつでも編集できる。公認サークルでも非公認サークルでも申請があればサークル紹介ページを作成できる。サークルのカテゴリ別整理や、検索システムやAIによる「あなたに合っているサークル診断」などを実装する。主に新入生向けに自分の探しているサークルや、自分に合ったサークルを探すことができるサービス。
+
+## 起動方法
+
+ルートディレクトリで`docker compose up`、または`docker compose up --build`を実行
+ブラウザで`http://localhost:8000/ryukoku-circle-hub`にアクセス
 
 ## 主な使用技術
 

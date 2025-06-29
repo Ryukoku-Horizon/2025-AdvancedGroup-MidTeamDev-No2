@@ -43,7 +43,7 @@ const TypeSelecter = ({ index, setType, isHover,addNewBlock,isEmpty,isOpen,setSe
     return () => {
       document.removeEventListener("mousedown", handleClickOutside, true);
     };
-  }, []);
+  }, [setSelecterIndex]);
   
   
   return (

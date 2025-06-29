@@ -23,7 +23,7 @@ const DenyModal=({showModal,setShowModal,pendingData}:Props)=>{
         if(success){
             setPendingData((prev)=>prev.filter((item)=>item.id !== pendingData.id))
         }
-    },[success])
+    },[success,setPendingData,pendingData.id])
 
     return (
         <Modal

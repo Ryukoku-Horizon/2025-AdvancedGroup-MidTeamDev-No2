@@ -15,7 +15,7 @@ const useRequest=()=>{
                 navigate("/comp");
             },1500)
         }
-    },[success])
+    },[success,navigate])
 
     const request=async(email:string,name:string,location:string,activeDate:string,detail:string)=>{
         try{

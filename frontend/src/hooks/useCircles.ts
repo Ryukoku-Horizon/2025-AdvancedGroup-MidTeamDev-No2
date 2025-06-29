@@ -28,7 +28,7 @@ const useCircles=(startLoad:boolean,limit:number,offset:number)=>{
         if(startLoad){
             fetchData()
         }
-    },[startLoad])
+    },[startLoad,limit,offset])
 
     return {circleData,loading,hasMore}
 }

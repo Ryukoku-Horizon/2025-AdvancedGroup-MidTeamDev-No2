@@ -15,7 +15,7 @@ const useEditCircle=(id:string | undefined)=>{
                 navigate(`/manage/${id}`)
             },1500);
         }
-    },[success])
+    },[success,id,navigate])
 
     const edit=async(circleData:Circle,base64?:string)=>{
         setLoading(true)

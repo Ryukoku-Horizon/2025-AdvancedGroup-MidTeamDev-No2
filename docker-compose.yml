@@ -4,11 +4,12 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./app/Dockerfile
+      dockerfile: ./frontend/Dockerfile
     ports:
-      - "8000:8000"
+      - "8000:3000"
     volumes:
-      - ./app:/app
-      - /app/node_modules  
+      - ./frontend:/frontend
+      - /frontend/node_modules  
     environment:
       - NODE_ENV=development
+      - HOST=0.0.0.0

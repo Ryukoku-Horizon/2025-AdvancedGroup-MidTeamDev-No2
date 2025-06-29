@@ -13,7 +13,7 @@ const useResponse=(setShowModal:(arg:boolean)=>void)=>{
                 setShowModal(false)
             },1500)
         }
-    },[success])
+    },[success,setShowModal])
 
     const closeModal=()=>{
         setErrMessage("");

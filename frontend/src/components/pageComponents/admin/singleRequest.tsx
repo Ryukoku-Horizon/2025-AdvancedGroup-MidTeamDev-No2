@@ -10,7 +10,7 @@ type Props={
 }
 
 const SingleRequest = ({ item }:Props) => {
-  const [showDetail, setShowDetail] = useState(false);
+  // const [showDetail, setShowDetail] = useState(false);
   const [showModal,setShowModal] = useState(false);
   const [showDenyModal,setShowDenyModal] = useState(false)
 

@@ -16,7 +16,7 @@ const useSavePageData=(id:string | undefined)=>{
                 navigate(`/manage/${id}`)
             },1500);
         }
-    },[success])
+    },[success,id,navigate])
 
     const save=async(blocks:Block[],circleId:string | undefined)=>{
         if(!circleId) return;

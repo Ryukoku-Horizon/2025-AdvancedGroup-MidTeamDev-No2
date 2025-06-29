@@ -25,7 +25,7 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
         }else{
             setCrrBlock(null)
         }
-    },[isFocused])
+    },[isFocused,blocks])
 
     useEffect(() => {
         blocks.forEach((text, i) => {
