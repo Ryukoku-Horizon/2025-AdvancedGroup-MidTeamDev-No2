@@ -151,6 +151,7 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
         const plainText = block.plainText;
     
         if (e.key === "ArrowRight") {
+            if (isComposing) return;
             const caretPosition = getCaretPosition(inputRefs.current[i]!);
             if (inputRefs.current[i + 1] && caretPosition === plainText.length) {
                 e.preventDefault();
@@ -158,6 +159,7 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
                 setCaretPosition(inputRefs.current[i + 1]!, 0);
             }
         } else if (e.key === "ArrowLeft") {
+            if (isComposing) return;
             const caretPosition = getCaretPosition(inputRefs.current[i]!);
             if (inputRefs.current[i - 1] && caretPosition === 0) {
                 e.preventDefault();
@@ -165,11 +167,13 @@ const useEditor=(blocks:Block[],setBlocks: React.Dispatch<React.SetStateAction<B
                 setCaretPosition(inputRefs.current[i - 1]!, blocks[i - 1].plainText.length);
             }
         } else if (e.key === "ArrowDown") {
+            if (isComposing) return;
             if (inputRefs.current[i + 1]) {
                 e.preventDefault();
                 inputRefs.current[i + 1]?.focus();
             }
         } else if (e.key === "ArrowUp") {
+            if (isComposing) return;
             if (inputRefs.current[i - 1]) {
                 e.preventDefault();
                 inputRefs.current[i - 1]?.focus();

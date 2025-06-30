@@ -36,7 +36,7 @@ const Home = () => {
         <HeroSection />
         <section className="circle-list-section" id="circle-list" ref={listRef}>
           <h2 className="section-title">サークル一覧</h2>
-          <div>
+          <div className="circle-list">
             {loading && <CenterLoader />}
             {!loading && (
               <div className="circle-grid">

@@ -1,5 +1,5 @@
 .card {
-    width: 300px;
+    width: 280px;
     background-color: #fff;
     border-radius: 16px;
     overflow: hidden;
@@ -24,6 +24,7 @@
   
   .content {
     padding: 16px;
+    height:100px;
   }
   
 .title {

@@ -13,7 +13,7 @@ const SingleCircleCard=({circleData}:Props)=>{
                 <img src={circleData.image!=="" ? circleData.image : "no-image.png"} alt={`${circleData.name} の画像`} className="image" />
                 <div className="content">
                     <h2 className="title">{circleData.name}</h2>
-                    <p className="description">{circleData.detail}</p>
+                    <p className="description">{circleData.detail.length > 36 ? `${circleData.detail.slice(0,36)}...` : circleData.detail}</p>
                 </div>
             </div>
         </Link>

@@ -33,6 +33,12 @@ const CircleInfo=({circleData}:Props)=>{
                     ))}
                 </ul>
                 </div>
+                
+                <p>活動時間</p>
+                <p>{circleData.activeDate.type}</p>
+                {circleData.activeDate.type!=="毎週" && typeof circleData.activeDate.data==="string" && (
+                    <p>{circleData.activeDate.data}</p>
+                )}
 
                 {circleData.activeDate.type === "毎週" && typeof circleData.activeDate.data !== "string" && (
                 <p>

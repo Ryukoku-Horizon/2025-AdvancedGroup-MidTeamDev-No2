@@ -24,7 +24,7 @@ const useToolbar=()=>{
       
           // 表示位置と表示状態を更新
           setToolbarPosition({
-            top: rect.top + window.scrollY - 40, // 上に少し余白
+            top: rect.top + window.scrollY - 40, 
             left: rect.left + window.scrollX,
           });
           setShowToolbar(true);
@@ -36,7 +36,7 @@ const useToolbar=()=>{
         };
     }, []);
       
-    return {showToolbar,toolbarPosition}
+    return {showToolbar,toolbarPosition,setShowToolbar}
 }
 
 export default useToolbar

@@ -1,6 +1,7 @@
 .home-container {
     margin: 0 auto;
     font-family: "Segoe UI", sans-serif;
+    width: 100%;
 }
   
 .hero-section {
@@ -87,13 +88,40 @@
     margin-top: 40px;
     margin:20px;
     min-height: 500px;
+    width: 100%;
+}
+
+.circle-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
   
-.circle-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+@media (min-width: 600px) {
+    .circle-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
 }
+@media(max-width:599){
+    @media (min-width: 450px) {
+        .circle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+    }
+}
+@media (max-width: 449px) {
+    .circle-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+}
+  
 
 .hero-button {
     display: inline-block;

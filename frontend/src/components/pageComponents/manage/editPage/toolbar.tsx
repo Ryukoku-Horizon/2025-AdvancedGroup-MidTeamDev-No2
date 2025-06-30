@@ -15,7 +15,7 @@ type Props={
 }
 
 const Toolbar=({handleBold,handleUnderline,type,setType,handleColor}:Props)=>{
-    const {showToolbar,toolbarPosition} = useToolbar();
+    const {showToolbar,toolbarPosition,setShowToolbar} = useToolbar();
     const [color,setColor] = useState<string>("")
 
     useEffect(()=>{
@@ -26,20 +26,27 @@ const Toolbar=({handleBold,handleUnderline,type,setType,handleColor}:Props)=>{
         <AnimatePresence>
             {showToolbar && (
                 <motion.div
-                    className="toolbar"
+                    className="toolbar absolute"
                     style={{
-                    top: toolbarPosition.top,
-                    left: toolbarPosition.left
+                    top: toolbarPosition.top - 80,
+                    left: toolbarPosition.left - 20
                     }}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0,transition:{ duration: 0.2, delay: 0.2 } }}
                     exit={{ opacity: 0, y: 10,transition: { duration: 0.2, delay: 0 }  }}
                 >
-                    <button onClick={()=>handleBold()}>太字</button>
-                    <button onClick={()=>handleUnderline()}>下線</button>
+                    <button onClick={()=>{
+                        handleBold();
+                        setShowToolbar(false);
+                        }}>太字</button>
+                    <button onClick={()=>{
+                        handleUnderline();
+                        setShowToolbar(false);
+                        }}>下線</button>
                     <select value={type} onChange={(e)=>{
                         const value = e.target.value as Type;
                         setType(value)
+                        setShowToolbar(false)
                         }}>
                         {blockTypes.map((block)=>(
                             <option value={block.type}>{block.label}</option>
@@ -49,6 +56,7 @@ const Toolbar=({handleBold,handleUnderline,type,setType,handleColor}:Props)=>{
                         const value = e.target.value as Color;
                         handleColor(value);
                         setColor(value)
+                        setShowToolbar(false)
                     }}> 
                         <option value={""}>色</option>
                         {Colors.map((item)=>(

@@ -14,6 +14,7 @@ const PasswordInput = ({ input, setInput, error }) => {
         label="パスワード"
         error={error}
         errMessage="パスワードが入力されていません"
+        type="password"
     />
   );
 };
