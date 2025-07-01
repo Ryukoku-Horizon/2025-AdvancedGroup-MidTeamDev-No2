@@ -18,7 +18,7 @@ const Request=()=>{
     const [mail,setMail] = useState("");
     const [name, setName] = useState("");
     const [detail,setDetail] = useState("");
-    const [dateType,setDateType] = useState("weekly");
+    const [dateType,setDateType] = useState("毎週");
     const [selectedWeek,setSelectedWeek] = useState<string[]>([]);
     const [selectedCampuses, setSelectedCampuses] = useState<string[]>([]);
     const [selectedStartTime,setSelectedStartTime] = useState("");
@@ -28,10 +28,9 @@ const Request=()=>{
     const {loading,loadingMessage,errMessage,request,success} = useRequest();
 
     const handleRequest=async()=>{
-        console.log("aaa")
         if(mail!=="" && name!=="" && detail!=="" && selectedCampuses.length!==0){
-            if((dateType==="weekly" && selectedWeek.length!==0) || (dateType!=="weekly" && timeDetail!=="")){
-                const date =  {type:dateType,data:dateType==="weekly" ? {week:selectedWeek,start:selectedStartTime,end:selectedEndTime} : timeDetail}
+            if((dateType==="毎週" && selectedWeek.length!==0) || (dateType!=="毎週" && timeDetail!=="")){
+                const date =  {type:dateType,data:dateType==="毎週" ? {week:selectedWeek,start:selectedStartTime,end:selectedEndTime} : timeDetail}
                 await request(mail,name,JSON.stringify(selectedCampuses),JSON.stringify(date),detail)
             }
         }
@@ -46,13 +45,13 @@ const Request=()=>{
                     <NameInput name={name} setName={setName} />
                     <DetailInput detail={detail} setDetail={setDetail} />
                     <DateTypeSelect dateType={dateType} setDateType={setDateType} />
-                    {dateType==="weekly" && <WeekSelect selectedWeek={selectedWeek} setSelectedWeek={setSelectedWeek} />}
-                    {dateType==="weekly" && <SelectTime 
+                    {dateType==="毎週" && <WeekSelect selectedWeek={selectedWeek} setSelectedWeek={setSelectedWeek} />}
+                    {dateType==="毎週" && <SelectTime 
                         selectedStartTime={selectedStartTime} 
                         setSelectedStartTime={setSelectedStartTime} 
                         selectedEndTime={selectedEndTime} 
                         setSelectedEndTime={setSelectedEndTime} />}
-                    {dateType!=="weekly" && <TimeDetailInput timeDetail={timeDetail} setTimeDetail={setTimeDetail} dateType={dateType} />}
+                    {dateType!=="毎週" && <TimeDetailInput timeDetail={timeDetail} setTimeDetail={setTimeDetail} dateType={dateType} />}
                     <CampuseSelect setSelectedCampuses={setSelectedCampuses} selectedCampuses={selectedCampuses} />
                     {!loading && !success && <ConfirmButton  onClick={async () => { await handleRequest(); } }>
                         申請する

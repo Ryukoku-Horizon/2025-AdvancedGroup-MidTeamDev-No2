@@ -41,7 +41,9 @@ function Login() {
                         </ConfirmButton>
                     )}
                     {loading && <ClipLoader color="#3182ce" size={40} />}
-                    {user && <SuccessCheck size={50} />}
+                    {user && <div className="flex justify-center">
+                        <SuccessCheck size={50} />
+                    </div>}
 
                     {errMessage && <p className="login-error">{errMessage}</p>}
                 </div>

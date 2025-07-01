@@ -110,7 +110,7 @@ const EditProfile=()=>{
                             </div>}
                             {dateType!=="毎週" && <TimeDetailInput timeDetail={timeDetail} setTimeDetail={setTimeDetail} dateType={dateType} />}
                             <CampuseSelect setSelectedCampuses={setSelectedCampuses} selectedCampuses={selectedCampuses} />
-                            {!loading && !success && <ConfirmButton onClick={() => {handleEdit()} }>
+                            {!loading && !editLoading && !success && <ConfirmButton onClick={() => {handleEdit()} }>
                                 確定
                             </ConfirmButton>}
                             {editLoading && !success && <ClipLoader color="#36d7b7" size={50}  />}

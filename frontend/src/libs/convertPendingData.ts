@@ -91,7 +91,7 @@ const convertWeek=(weeks:string[])=>{
         }else if(week==="sun"){
             return "日曜日"
         }else{
-            return weeks
+            return week
         }
     })
 }

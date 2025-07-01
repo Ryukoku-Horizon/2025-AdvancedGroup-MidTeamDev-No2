@@ -6,24 +6,17 @@ import CancelButton from "../../common/Btn/cancelBtn/cancelBtn";
 import useResponse from "../../../hooks/useResponse";
 import { ClipLoader } from "react-spinners";
 import SuccessCheck from "../../common/checkmark/successCheck";
-import usePendingData from "../../../hooks/usePendingData";
 import { Circle } from "../../../types/Circle";
 
 type Props={
     showModal:boolean;
     setShowModal:(arg:boolean)=>void;
     pendingData:Circle;
+    setPendingData: React.Dispatch<React.SetStateAction<Circle[]>>
 }
 
-const ApproveModal=({showModal,setShowModal,pendingData}:Props)=>{
-    const {approve,loading,errMessage,success,closeModal} = useResponse(setShowModal)
-    const {setPendingData} = usePendingData()
-
-    React.useEffect(()=>{
-        if(success){
-            setPendingData((prev)=>prev.filter((item)=>item.id !== pendingData.id))
-        }
-    },[success,setPendingData,pendingData.id])
+const ApproveModal=({showModal,setShowModal,pendingData,setPendingData}:Props)=>{
+    const {approve,loading,errMessage,success,closeModal} = useResponse(setShowModal,setPendingData,pendingData.id)
 
     return (
         <Modal
@@ -39,11 +32,16 @@ const ApproveModal=({showModal,setShowModal,pendingData}:Props)=>{
                 <p>{errMessage}</p>
                 <div className="modal-buttons">
                     {!loading && !success && <>
-                        <ConfirmButton onClick={()=>{approve(pendingData)}}>はい</ConfirmButton>
-                        <CancelButton onClick={() => { closeModal(); } }>いいえ</CancelButton>
+                        <ConfirmButton onClick={()=>{
+                            approve(pendingData)
+                        }
+                        }>はい</ConfirmButton>
+                        <CancelButton onClick={() => {
+                            closeModal();
+                            } }>いいえ</CancelButton>
                     </>}
                     {loading && !success && <ClipLoader color="#36d7b7" size={30}  />}
-                    {success && <SuccessCheck size={30} />}
+                    {success && <SuccessCheck size={35} />}
                 </div>
             </div>
         </Modal>

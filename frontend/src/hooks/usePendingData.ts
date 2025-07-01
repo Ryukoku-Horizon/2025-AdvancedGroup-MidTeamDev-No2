@@ -11,8 +11,8 @@ const usePendingData=()=>{
     useEffect(()=>{
         const fetchData=async()=>{
             if(n!==0){
+                setLoading(true)
                 try{
-                    setLoading(true)
                     const {success,data} = await getPendingData("*",{})
                     if(success && data){
                         setPendingData(convertPendingData(data))
