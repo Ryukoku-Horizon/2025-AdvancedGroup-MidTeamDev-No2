@@ -123,6 +123,9 @@
 .b-8{
     bottom:4.5rem
 }
+.b-9{
+    bottom: 9rem;
+}
 
 .r-0{
     right: 0;
@@ -225,6 +228,9 @@
 }
 .m-8{
     margin:4rem
+}
+.m-auto{
+    margin: auto;
 }
 
 .mt-0{

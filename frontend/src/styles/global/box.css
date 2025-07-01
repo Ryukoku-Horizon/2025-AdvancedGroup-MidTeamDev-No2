@@ -13,6 +13,7 @@
     text-align: center;
 }
 
+
 /* justify */
 .justify-self-center{
     justify-self:center;
@@ -84,6 +85,13 @@
     border-bottom-left-radius: 10px;
 }
 
+.radius-ai{
+    border-top-left-radius: 0;
+}
+.radius-me{
+    border-top-right-radius: 0;
+}
+
 /* 横幅 */
 .w-0_5{
     width:0.25rem;
@@ -149,6 +157,9 @@
     width: 9rem;
     height: 9rem;
 }
+.max-w-600{
+    max-width: 700px;
+}
 
 /* 高さ */
 .h-0_5{
@@ -193,6 +204,12 @@
 .h-screen {
     height: 100vh;
 }
+
+.wh-75p{
+    height: 75%;
+    width: 75%;
+}
+.wh-
 
 .gap-0{
     gap: 0;
@@ -335,4 +352,58 @@
 
 .box-shadow{
     box-shadow:0 10px 10px rgb(192, 192, 192);
+}
+
+.speechBubble {
+  position: relative;
+  display: inline-block;
+  margin-left: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #9bee8c;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.speechBubble::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-style: solid;
+  border-width: 0 16px 16px 0;
+  border-color: transparent #9bee8c transparent transparent;
+  translate: -100% calc(-50% - 0.4px);
+  transform: skew(0, -10deg);
+  transform-origin: right;
+}
+
+.speechBubble-right {
+  position: relative;
+  display: inline-block;
+  margin-right: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #9bee8c;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+}
+
+.speechBubble-right::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0 16px 16px;
+  border-color: transparent transparent transparent #9bee8c;
+  translate: 100% calc(-50% - 0.4px);
+  transform: skew(0, -10deg);
+  transform-origin: left;
 }
