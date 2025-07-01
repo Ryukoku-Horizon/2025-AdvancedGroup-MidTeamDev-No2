@@ -26,7 +26,7 @@ const CirclePage=()=>{
     return (
         <Layout>
             <div className="manage-container">
-                <div className="main-content flex items-center justify-center">
+                <div className="main-content flex flex-col items-center justify-center">
                     <section className="circle-info relative" style={{maxWidth:"650px"}}>
                     {!loading && !pageLoad && circleData && <div>
                         {circleData.image!==""&& <img src={circleData.image} className="circle-cover" />}
