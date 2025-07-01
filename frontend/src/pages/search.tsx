@@ -14,7 +14,7 @@ const Search=()=>{
                     <p className="font-xl bold mb-0">検索</p>
                     <p className="gray-2 font-2xl bold mt-0 mb-5">気になるサークルを簡単検索</p>
                 </div>
-                <CommonSearchField value={value} onChange={(e)=>setValue(e.target.value)} className="w-full" />
+                <CommonSearchField value={value} onChange={(e)=>setValue(e.target.value)} className="" />
             </div>
         </Layout>
     )

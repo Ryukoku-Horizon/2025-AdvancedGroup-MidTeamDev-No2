@@ -18,14 +18,14 @@ const CommonSearchField=({className,value,onChange}:Props)=>{
             >
             <input
                 type="text"
-                className="search-input"
+                className="search-input w-full"
                 placeholder="サークルを検索：プログラミング、テニス、ダンス..."
                 value={value}
                 onChange={onChange}
             />
             <button className="border-none bg-white py-0 px-1 pointer m-0">
                 {/* @ts-ignore */}
-                <FiSearch className="search-icon" size={28} />
+                <FiSearch className="search-icon" size={24} />
             </button>
         </motion.label>
     )
