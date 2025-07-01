@@ -1,13 +1,20 @@
-// import { Link } from "react-router-dom";
+import { useState } from "react";
 import Layout from "../components/Layout/Layout";
+import CommonSearchField from "../components/common/textField/commonSerchField";
+import { Link } from "react-router-dom";
 
 const Search=()=>{
+    const [value,setValue] = useState("");
+
     return (
         <Layout>
-            <div className="center-posi text-center font-xl">
-                <h2>検索</h2>
-                <h2 className="gray-2 font-2xl">気になるサークルを簡単検索</h2>
-                <input className="w-full radius-md p-1 border" id="text" placeholder="Search for club..."/>
+            <Link to="/" className="login-link ml-2 mt-1">← ホームページへ</Link>
+            <div className="flex flex-col items-center justify-center w-full">
+                <div className="flex flex-col items-center justify-centers mt-6 pt-8">
+                    <p className="font-xl bold mb-0">検索</p>
+                    <p className="gray-2 font-2xl bold mt-0 mb-5">気になるサークルを簡単検索</p>
+                </div>
+                <CommonSearchField value={value} onChange={(e)=>setValue(e.target.value)} className="w-full" />
             </div>
         </Layout>
     )

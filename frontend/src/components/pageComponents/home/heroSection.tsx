@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
-import { FiSearch } from "react-icons/fi";
+import CommonSearchField from "../../common/textField/commonSerchField";
+import { useState } from "react";
 
 const HeroSection=()=>{
+    const [value,setValue] = useState("")
+
     return (
         <section className="hero-section">
             <motion.p 
@@ -29,20 +32,7 @@ const HeroSection=()=>{
             >
                 気になるサークルを簡単検索
             </motion.p>
-            <motion.label
-                className="search-bar"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                    {/* @ts-ignore */}
-                <FiSearch className="search-icon" size={28} />
-                <input
-                    type="text"
-                    className="search-input"
-                    placeholder="サークルを検索：プログラミング、テニス、ダンス..."
-                />
-            </motion.label>
+            <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} />
             <motion.div
                 className="hero-cta"
                 initial={{ opacity: 0, y: 10 }}

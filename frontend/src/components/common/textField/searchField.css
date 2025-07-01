@@ -1,0 +1,26 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 520px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor:text;
+}
+  
+.search-icon {
+    font-size: 1.2rem;
+    color: #a0aec0; /* 薄めのグレーで邪魔しない */
+    margin-right: 8px;
+}
+  
+.search-input {
+    border: none;
+    flex: 1;
+    font-size: 1rem;
+    outline: none;
+    color: #2d3748;
+}

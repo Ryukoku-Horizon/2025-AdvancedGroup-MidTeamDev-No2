@@ -3,7 +3,7 @@ import { convertCircleData } from "../libs/convertPendingData";
 import { Circle, StringfyCircle } from "../types/Circle";
 import { getCircleData } from "../libs/gateways";
 
-const useCircles=(limit:number,initOffset:number)=>{
+const useCircles=(startLoad:boolean,limit:number,initOffset:number)=>{
     const [circleData,setCircleData] =useState<Circle[]>([]);
     const [loading,setLoading] = useState(false);
     const [hasMore,setHasMore] = useState(false)
@@ -13,28 +13,23 @@ const useCircles=(limit:number,initOffset:number)=>{
         const fetchData=async()=>{
             try{
                 setLoading(true)
-                if(offset>0){
-                    const {success,data} = await getCircleData("*",{},limit,offset)
-                    if(success && data){
-                        if(data.length===limit){
-                            setHasMore(true)
-                        }else{
-                            setHasMore(false)
-                        }
-                        setCircleData((prev) => [
-                            ...prev,
-                            ...data.map((item: StringfyCircle) => convertCircleData(item)),
-                          ]);
-                    }else if(!success){
-    
-                    }
+                const {success,data} = await getCircleData("*",{},limit,offset)
+                if(success && data){
+                    setHasMore(data.length === limit)
+                    setCircleData((prev) => [
+                        ...prev,
+                        ...data.map((item: StringfyCircle) => convertCircleData(item)),
+                        ]);
+                }else if(!success){
+
                 }
             }finally{
                 setLoading(false)
             }
         }
+        if(startLoad)
         fetchData()
-    },[offset])
+    },[startLoad,offset])
 
     return {circleData,loading,hasMore,setOffset}
 }

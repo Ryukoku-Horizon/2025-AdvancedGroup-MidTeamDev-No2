@@ -13,6 +13,7 @@ type Props={
   onBlur:React.FocusEventHandler<HTMLInputElement> | undefined;
   placeholder?:string;
   type?:string;
+  className?:string;
 }
 
 const CommonInput= ({
@@ -26,10 +27,11 @@ const CommonInput= ({
   error=false,
   disabled = false,
   onBlur,
-  errMessage
+  errMessage,
+  className
 }:Props) => {
   return (
-    <div className="input-group">
+    <div className={`input-group ${className}`}>
       {label && (
         <label className="input-label" htmlFor={name}>
           {label}{required && ' *'}

@@ -4,7 +4,7 @@ import SingleCircleCard from "../components/pageComponents/home/singleCIrcleCard
 import CenterLoader from "../components/common/loader/centerLoader";
 
 const Result = () => {
-  const { circleData, loading } = useCircles(6, 0);
+  const { circleData, loading } = useCircles(false,6, 0);
 
   // 例: 検索絞り込み（適宜書き換え）
   const searchResults = circleData; // とりあえず全件表示
