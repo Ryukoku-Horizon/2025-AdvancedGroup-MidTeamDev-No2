@@ -2,11 +2,9 @@ import Layout from "../components/Layout/Layout";
 import useCircles from "../hooks/useCircles";
 import SingleCircleCard from "../components/pageComponents/home/singleCIrcleCard"; // Linkなしバージョン想定
 import CenterLoader from "../components/common/loader/centerLoader";
-import { useState } from "react";
 
 const Result = () => {
-  const [startLoad] = useState(true);
-  const { circleData, loading } = useCircles(startLoad, 100, 0);
+  const { circleData, loading } = useCircles(6, 0);
 
   // 例: 検索絞り込み（適宜書き換え）
   const searchResults = circleData; // とりあえず全件表示

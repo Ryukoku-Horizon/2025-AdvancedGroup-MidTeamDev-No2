@@ -7,7 +7,7 @@ function useScrollToBottom(callback: () => void) {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      if (scrollTop + windowHeight >= documentHeight - 20) {
+      if (scrollTop + windowHeight >= documentHeight - 5) {
         callback();
       }
     };
