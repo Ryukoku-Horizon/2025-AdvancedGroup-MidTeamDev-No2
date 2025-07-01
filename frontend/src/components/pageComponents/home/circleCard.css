@@ -10,7 +10,7 @@
     will-change: transform, box-shadow;
 }
 
-@media (min-width:400px) and (max-width:589px){
+@media (min-width:400px) and (max-width:549px){
   .card{
     margin-left: 60px;
     margin-right: 60px;
