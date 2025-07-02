@@ -77,7 +77,7 @@ export const getPageData=async(select:string,match?:{[key:string]:string})=>{
     }
 }
 
-export const searchCircleData=async(select:string,searchKeyword:string,match?:{[key:string]:string},limit?:number,offset?:number)=>{
+export const searchCircleData=async(searchKeyword:string,limit?:number,offset?:number)=>{
     try{
         const res = await fetch(`${SUPABASE_URL}/functions/v1/search_circle`,{
             method: "POST",
@@ -86,11 +86,7 @@ export const searchCircleData=async(select:string,searchKeyword:string,match?:{[
                 "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
             },
             body:JSON.stringify({
-                searchKeyword,
-                match,
-                select,
-                limit,
-                offset
+                limit, offset,searchKeyword
             })
         })
         if(!res.ok){

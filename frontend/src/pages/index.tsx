@@ -6,12 +6,13 @@ import HeroSection from "../components/pageComponents/home/heroSection";
 import { useEffect, useRef, useState } from "react";
 import useScrollToBottom from "../hooks/useScrollToBottom";
 import { ClipLoader } from "react-spinners";
+import CenterLoader from "../components/common/loader/centerLoader";
 
 const Home = () => {
   const [startLoad, setStartLoad] = useState(false);
   const listRef = useRef<HTMLElement | null>(null);
   const limit = 6
-  const { circleData, loading, setOffset,hasMore } = useCircles(startLoad,limit,0);
+  const { circleData, loading, setOffset,hasMore,offset } = useCircles(startLoad,limit,0);
   // useScrollToBottom(()=>{
   //   if (hasMore && !loading && startLoad && circleData.length >= 6) {
   //     setOffset((prev) => prev + limit);
@@ -43,6 +44,7 @@ const Home = () => {
         <section className="circle-list-section" id="circle-list" ref={listRef}>
           <h2 className="section-title">サークル一覧</h2>
           <div className="circle-list">
+            {loading && offset <= 0 && <CenterLoader />}
             {(!loading || startLoad) && (
               <div className="circle-grid">
                 {circleData.map((item) => (
@@ -52,7 +54,7 @@ const Home = () => {
             )}
           </div>
           <div className="w-full h-3">
-            {loading && (
+            {loading && offset > 7 && (
                 <div className="flex justify-center">
                   <ClipLoader color="#36d7b7" size={100} />
                 </div>

@@ -32,7 +32,7 @@ const HeroSection=()=>{
             >
                 気になるサークルを簡単検索
             </motion.p>
-            <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} />
+            <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} onClick={()=>{}} />
             <motion.div
                 className="hero-cta"
                 initial={{ opacity: 0, y: 10 }}

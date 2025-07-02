@@ -14,7 +14,7 @@ const Result = () => {
 
   return (
     <Layout>
-      <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} />
+      {/* <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} /> */}
       <main style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
         <h1 style={{ fontSize: "2em", marginBottom: "20px" }}>検索結果</h1>
         {loading ? (
