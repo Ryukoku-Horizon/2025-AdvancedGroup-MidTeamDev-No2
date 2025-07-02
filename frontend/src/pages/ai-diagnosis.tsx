@@ -1,34 +1,26 @@
-// import { Link } from "react-router-dom";
+import "../styles/ai-diagnosis.css";
 import Layout from "../components/Layout/Layout";
+import { useState } from "react";
+import InitScreen from "../components/pageComponents/ai-diagnosis/initScreen";
+import PageTitle from "../components/pageComponents/ai-diagnosis/pageTitle";
 
-const AIDiagnosis=()=>{
+const AIDiagnosis = () => {
+    const [isStarted,setIsStarted] = useState(false)
+
+    const start=()=>{
+        setIsStarted(true)
+    }
+
     return (
         <Layout>
-            <div className="relative flex flex-col items-center text-center p-6 border radius-md pt-1 box-shadow wh-75p center-posi">
-                <h2 className="b-9 mb-8" >AIサークル診断へようこそ！</h2>
-                
-                <div className="wh-75-10p ml-0 mr-auto text-left">
-                    <div className="mb-2">
-                        <div className="speechBubble">
-                            こんにちは！
-                        </div>
-                    </div>
-                </div>
-                <div className="wh-75-10p text-right">
-                    <div className="speechBubble-right  mb-2">
-                        <p>こんにちは。これは例です。</p>
-                    </div>
-                </div>
-
-                <div className="absolute b-0 mb-2 max-w-600 w-90p">
-                    <label htmlFor="" className="flex w-full">
-                        <input className="w-90p radius-none-right p-1 border b-0" id="text" placeholder="Search for club..."/>
-                        <button type="submit" className="w-10p radisu-none-left border-width-none p-1 background-blue white">送信</button>
-                    </label>
+            <div className="flex justify-center h-90p w-full">
+                <div className="diagnosis-container flex flex-col items-center my-2 px-8 pb-8">
+                    <PageTitle isStarted={isStarted} />
+                    <InitScreen start={start} isStarted={isStarted} />
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
 export default AIDiagnosis;
