@@ -29,11 +29,12 @@ const CirclePage=()=>{
                 <div className="main-content flex flex-col items-center justify-center">
                     <section className="circle-info relative" style={{maxWidth:"650px"}}>
                     {!loading && !pageLoad && circleData && <div>
+                        <Title text={circleData.name} className={circleData.image!=="" ? "relative l-2 m-0" : "m-0 relative l-3"} />
                         {circleData.image!==""&& <img src={circleData.image} className="circle-cover" />}
-                        <Title text={circleData.name} className={circleData.image!=="" ? "absolute t-29 l-5" : "m-0 relative l-3"} />
-                        <div className={circleData.image!=="" ? "border-b h-1 border-gray-2 my-2" : "border-b h-1 border-gray-2 m-0"} />
+                        {circleData.image===""&& <div className={circleData.image!=="" ? "border-b h-1 border-gray-2 my-2" : "border-b h-1 border-gray-2 m-0"} />}
                         {pageData.map((block,i)=>(
                             <div
+                            key={i}
                             ref={(el) => {
                                 inputRefs.current[i] = el;
                                 }}

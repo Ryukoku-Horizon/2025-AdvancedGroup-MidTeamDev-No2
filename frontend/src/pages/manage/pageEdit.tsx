@@ -40,9 +40,9 @@ const EditPage=()=>{
                 {success && <SuccessCheck size={50} />}
                 <div className="main-content relative flex justify-center items-center">
                     {!dataLoad && circleData && <section className="circle-info relative" style={{maxWidth:"650px"}}>
-                    {circleData.image!==""&& <img src={circleData.image} className="circle-cover" />}
-                        <Title text={circleData.name} className={circleData.image!=="" ? "absolute t-29 l-5" : "m-0 relative l-3"} />
-                        <div className={circleData.image!=="" ? "border-b h-1 border-gray-2 my-2" : "border-b h-1 border-gray-2 m-0"} />
+                        <Title text={circleData.name} className={circleData.image!=="" ? "relative l-2 m-0" : "m-0 relative l-3"} />
+                        {circleData.image!==""&& <img src={circleData.image} className="circle-cover" />}
+                        {circleData.image===""&& <div className={circleData.image!=="" ? "border-b h-1 border-gray-2 my-2" : "border-b h-1 border-gray-2 m-0"} />}
                         <Editor blocks={blocks} setBlocks={setBlocks} />
                     </section>}
                     {(dataLoad || pageLoad) && <CenterLoader />}

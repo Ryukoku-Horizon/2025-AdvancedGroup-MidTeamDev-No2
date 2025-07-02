@@ -5,7 +5,7 @@ type Props={
 
 const Title=({text,className}:Props)=>{
     return (
-        <p className={`font-7xl bold ${className}`}>{text}</p>
+        <p className={`font-6xl bold gray-6 ${className}`}>{text}</p>
     )
 }
 
