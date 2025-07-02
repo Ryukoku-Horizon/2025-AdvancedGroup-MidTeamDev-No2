@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import CommonSearchField from "../components/common/textField/commonSerchField";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import useSearchCircles from "../hooks/useSearch";
 import { motion, AnimatePresence } from "framer-motion";
 import CenterLoader from "../components/common/loader/centerLoader";
@@ -14,6 +14,15 @@ const Search=()=>{
     const [startLoad,setStartLoad] = useState(false)
     const listRef = useRef<HTMLElement | null>(null);
     const {setKeyword,keyword,circleData,loading,hasMore,setOffset,offset,setTrigger} = useSearchCircles(startLoad,limit,0)
+    const location = useLocation();
+
+    useEffect(()=>{
+        if(location.state?.keyword){
+            setKeyword(location.state?.keyword)
+            if(!startLoad) setStartLoad(true)
+            setTrigger((p)=>!p)
+        }
+    },[location.state])
 
     useScrollToBottom(()=>{
         if (hasMore && !loading && startLoad && circleData.length >= 6) {

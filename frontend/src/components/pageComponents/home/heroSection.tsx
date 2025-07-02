@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import CommonSearchField from "../../common/textField/commonSerchField";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection=()=>{
     const [value,setValue] = useState("")
+    const navigate = useNavigate()
 
     return (
         <section className="hero-section">
@@ -32,7 +34,10 @@ const HeroSection=()=>{
             >
                 気になるサークルを簡単検索
             </motion.p>
-            <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} onClick={()=>{}} />
+            <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} onClick={()=>{
+                if(value!=="")
+                navigate("/search",{state:{keyword:value}})
+            }} />
             <motion.div
                 className="hero-cta"
                 initial={{ opacity: 0, y: 10 }}
