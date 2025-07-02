@@ -12,6 +12,12 @@
 .text-center{
     text-align: center;
 }
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
 
 
 /* justify */
@@ -209,7 +215,10 @@
     height: 75%;
     width: 75%;
 }
-.wh-
+.wh-75-10p{
+    height: 10%;
+    width: 75%;
+}
 
 .gap-0{
     gap: 0;
