@@ -13,7 +13,6 @@ const Comp=()=>{
                     <p className="font-3xl bold m-0">申請が完了しました</p>
                     <p className="font-md pb-2">申請結果については後日メールでお知らせします。</p>
                     <ConfirmButton onClick={()=>{navigate("/")}}>ホームに戻る</ConfirmButton>
-                    {/* <Link to="/" className="radius-md background-blue white p-1 font-l">ホームに戻る</Link> */}
                 </div>
             </div>
         </Layout>

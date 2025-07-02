@@ -14,6 +14,7 @@ type Props={
   placeholder?:string;
   type?:string;
   className?:string;
+  onKeyDown?:(e: React.KeyboardEvent<HTMLInputElement>)=>void;
 }
 
 const CommonInput= ({
@@ -28,7 +29,8 @@ const CommonInput= ({
   disabled = false,
   onBlur,
   errMessage,
-  className
+  className,
+  onKeyDown
 }:Props) => {
   return (
     <div className={`input-group ${className}`}>
@@ -48,6 +50,7 @@ const CommonInput= ({
         required={required}
         disabled={disabled}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
       />
       {error && <p className="input-error-message">{errMessage}</p>}
     </div>
