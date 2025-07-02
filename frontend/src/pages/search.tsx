@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import CommonSearchField from "../components/common/textField/commonSerchField";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { ClipLoader } from "react-spinners";
 import useScrollToBottom from "../hooks/useScrollToBottom";
 
 const Search=()=>{
-    const limit = 6;
+    const limit = 9;
     const [startLoad,setStartLoad] = useState(false)
     const listRef = useRef<HTMLElement | null>(null);
     const {setKeyword,keyword,circleData,loading,hasMore,setOffset,offset,setTrigger} = useSearchCircles(startLoad,limit,0)

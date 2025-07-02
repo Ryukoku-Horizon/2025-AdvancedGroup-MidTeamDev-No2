@@ -22,8 +22,8 @@ const useSearchCircles=(startLoad:boolean,limit:number,initOffset:number)=>{
               setHasMore(data.length === limit);
               setCircleData((prev) =>
                 offset === 0
-                  ? data.map((item: StringfyCircle) => convertCircleData(item)) // 初回 or keyword変更時
-                  : [...prev, ...data.map((item: StringfyCircle) => convertCircleData(item))] // 追加読み込み時
+                  ? data.map((item: StringfyCircle) => convertCircleData(item)) 
+                  : [...prev, ...data.map((item: StringfyCircle) => convertCircleData(item))] 
               );
             }
           } finally {
