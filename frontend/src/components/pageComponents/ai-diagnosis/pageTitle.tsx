@@ -15,7 +15,7 @@ const PageTitle=({isStarted}:Props)=>{
                 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             >
-            AIサークル診断へようこそ！
+            AIサークル診断
         </motion.h2>
     )
 }

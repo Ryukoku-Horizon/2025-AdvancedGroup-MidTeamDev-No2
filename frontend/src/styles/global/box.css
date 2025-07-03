@@ -372,12 +372,13 @@
   margin-left: 16px;
   padding: 16px;
   border-radius: 12px;
-  background-color: #9bee8c;
+  background-color: #8ccdee;
   text-align: left;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
   color: #000000;
+  opacity: 0.8;
 }
 
 .speechBubble::after {
@@ -387,7 +388,7 @@
   left: 0;
   border-style: solid;
   border-width: 0 16px 16px 0;
-  border-color: transparent #9bee8c transparent transparent;
+  border-color: transparent #8ccdee transparent transparent;
   translate: -100% calc(-50% - 0.4px);
   transform: skew(0, -10deg);
   transform-origin: right;
@@ -399,7 +400,7 @@
   margin-right: 16px;
   padding: 16px;
   border-radius: 12px;
-  background-color: #9bee8c;
+  background-color: #8ccdee;
   text-align: left;
   font-size: 16px;
   font-weight: 400;
@@ -414,7 +415,7 @@
   right: 0;
   border-style: solid;
   border-width: 0 0 16px 16px;
-  border-color: transparent transparent transparent #9bee8c;
+  border-color: transparent transparent transparent #8ccdee;
   translate: 100% calc(-50% - 0.4px);
   transform: skew(0, -10deg);
   transform-origin: left;
