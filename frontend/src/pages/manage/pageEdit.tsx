@@ -18,6 +18,8 @@ const EditPage=()=>{
     const { success, loading, errMessage, save } = useSavePageData(id);
     const {pageData,loading:pageLoad} = usePageData(id)
     const navigate = useNavigate();
+    const env = process.env.REACT_APP_URL ?? "";
+
     const initBlock:Block = {
         plainText:"",
         richTexts:[{text:"",decoration:{bold:false,underline:false,color:"black"}}],
@@ -34,7 +36,7 @@ const EditPage=()=>{
     return (
         <Layout>
             <div className="manage-container">
-                {!loading && !success && <TopBar back={()=>{navigate(`/manage/${id}`)}} save={()=>{save(blocks,id)}} />}
+                {!loading && !success && <TopBar back={()=>{navigate(`${env}/manage/${id}`)}} save={()=>{save(blocks,id)}} />}
                 {errMessage!=="" && <p>{errMessage}</p>}
                 {loading && !success && <ClipLoader color="#36d7b7" size={50}  />}
                 {success && <SuccessCheck size={50} />}

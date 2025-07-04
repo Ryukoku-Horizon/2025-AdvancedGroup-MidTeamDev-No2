@@ -33,6 +33,7 @@ const EditForm=({circleId,loading}:Props)=>{
     const [selectedEndTime,setSelectedEndTime] = useState("");
     const [timeDetail,setTimeDetail] = useState("");
     const [image, setImage] = useState<File | null>(null);
+    const env = process.env.REACT_APP_URL ?? ""
 
     useEffect(()=>{
         if(circleData){
@@ -79,7 +80,7 @@ const EditForm=({circleId,loading}:Props)=>{
     return (
         <>
             {!loadData && circleData && <div className="flex flex-col items-start">
-            <Link to={`/manage/${circleId}`} className="back-link mb-3">← 戻る</Link>
+            <Link to={`${env}/manage/${circleId}`} className="back-link mb-3">← 戻る</Link>
             <CommonFileInput setFile={setImage} circleImage={circleData.image} />
             <NameInput name={name} setName={setName} />
             <DetailInput detail={detail} setDetail={setDetail} />

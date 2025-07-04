@@ -12,6 +12,7 @@ const EditProfile=()=>{
     const { id } = useParams();
     const {user,loading} = useFirebaseUser();
     const navigate = useNavigate()
+    const env = process.env.REACT_APP_URL ?? ""
 
     useEffect(()=>{
         if(!user && !loading){
@@ -23,7 +24,7 @@ const EditProfile=()=>{
         <Layout>
             {!user && !loading && <RequireLoginMessage />}
             <div className="manage-container">
-            <TopBar back={()=>{navigate(`/manage/${id}`)}} />
+            <TopBar back={()=>{navigate(`${env}/manage/${id}`)}} />
                 <div className="main-content">
                     <SideMenu id={id} />
                     <MainScreen>

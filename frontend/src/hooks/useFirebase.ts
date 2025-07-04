@@ -7,6 +7,7 @@ const useFirebaseUser = () => {
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate()
+  const env = process.env.REACT_APP_URL ?? ""
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -31,7 +32,7 @@ const useFirebaseUser = () => {
     try {
       await signOut(auth);
     } finally {
-      navigate("/")
+      navigate(`${env}/`)
       setLoading(false);
     }
   };

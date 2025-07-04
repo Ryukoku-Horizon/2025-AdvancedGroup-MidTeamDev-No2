@@ -4,6 +4,7 @@ import ConfirmButton from "../components/common/Btn/confirmBtn/confirmBtn";
 
 const Comp=()=>{
     const navigate = useNavigate()
+    const env = process.env.REACT_APP_URL ?? ""
 
     return (
         <Layout>
@@ -12,7 +13,7 @@ const Comp=()=>{
                     <img className="w-12" src="/ok-img.png" alt="申請完了" />
                     <p className="font-3xl bold m-0">申請が完了しました</p>
                     <p className="font-md pb-2">申請結果については後日メールでお知らせします。</p>
-                    <ConfirmButton onClick={()=>{navigate("/")}}>ホームに戻る</ConfirmButton>
+                    <ConfirmButton onClick={()=>{navigate(`${env}/`)}}>ホームに戻る</ConfirmButton>
                 </div>
             </div>
         </Layout>

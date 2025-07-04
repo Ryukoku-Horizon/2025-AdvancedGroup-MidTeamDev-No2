@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const HeroSection=()=>{
     const [value,setValue] = useState("")
     const navigate = useNavigate()
+    const env = process.env.REACT_APP_URL ?? ""
 
     return (
         <section className="hero-section">
@@ -36,7 +37,7 @@ const HeroSection=()=>{
             </motion.p>
             <CommonSearchField value={value} onChange={(e)=>{setValue(e.target.value)}} onClick={()=>{
                 if(value!=="")
-                navigate("/search",{state:{keyword:value}})
+                navigate(`${env}/search`,{state:{keyword:value}})
             }} />
             <motion.div
                 className="hero-cta"
