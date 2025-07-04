@@ -16,7 +16,7 @@ import Result from './pages/result';
 
 function App() {
   return (
-    <BrowserRouter basename="/ryukoku-circle-hub">
+    <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
