@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from './pages';
 import Login from './pages/login';
 import Search from './pages/search';
@@ -16,7 +16,7 @@ import Result from './pages/result';
 
 function App() {
   return (
-    <BrowserRouter basename="/2025-AdvancedGroup-MidTeamDev-No2">
+    <HashRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,7 +33,7 @@ function App() {
         <Route path="/circles/:id" element={<CirclePage />} />
         <Route path="/ai-diagnosis" element={<AIDiagnosis />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
