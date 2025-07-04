@@ -1,0 +1,25 @@
+.frosted-glass-button {
+    padding: 3px 24px;
+    border-radius: 9999px; /* 丸い形 */
+    background: rgba(255, 255, 255, 0.15); /* 半透明 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px); /* ガラス風 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .frosted-glass-button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+  }
+  
+  .frosted-glass-button:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  

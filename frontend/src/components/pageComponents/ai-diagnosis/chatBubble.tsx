@@ -1,6 +1,12 @@
 import { ClipLoader } from "react-spinners";
 import { Chat } from "../../../types/chat"
 import {motion} from "framer-motion"
+import "./button.css"
+import { useEffect, useState } from "react";
+import { Circle } from "../../../types/Circle";
+import { convertCircleData } from "../../../libs/convertPendingData";
+import { getCircleData } from "../../../libs/gateways";
+import SingleCircleCard from "../home/singleCIrcleCard";
 
 type Props={
     chat:Chat;
@@ -9,6 +15,17 @@ type Props={
 
 const ChatBubble=({chat,response}:Props)=>{
     const direction = chat.speaker==="user" ? "right" : "left";
+    const [circle,setCircle] = useState<Circle | null>(null)
+
+    useEffect(()=>{
+        const fetchData=async()=>{
+            const {success,data} = await getCircleData("*",{id:chat.content as string})
+            if(success && data){
+                setCircle(convertCircleData(data[0]))
+            }
+        }
+        if(chat.type==="cirlce") fetchData()
+    },[chat.type])
     
     return (
         <div className={`wh-75-10p ml-0 mr-auto text-${direction}`}>
@@ -29,12 +46,16 @@ const ChatBubble=({chat,response}:Props)=>{
                         ))
                     }</p>
                     }
-                    {chat.type==="choice" && typeof chat.content!=="string" && <div>
+                    {chat.type==="choice" && typeof chat.content!=="string" && <div className="flex gap-1">
                         {chat.content.map((item,i)=>(
-                            <button onClick={()=>{response(item)}} key={i}>
+                            <button onClick={()=>{response(item)}} key={i} className="frosted-glass-button">
                                 {item}
                             </button>
                         ))}
+                    </div>}
+                    {chat.type==="cirlce" && circle &&  <div>
+                        <p>↓こちらをからサークルの紹介ページを見れます</p>
+                        <SingleCircleCard circleData={circle} />
                     </div>}
                 </div>
             </div>

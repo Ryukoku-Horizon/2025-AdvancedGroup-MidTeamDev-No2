@@ -3,6 +3,8 @@ import { Chat } from "../types/chat";
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from "../constants/supabase";
 import { QnAs } from "../constants/qna";
 import { QnA } from "../types/QnA";
+import { getCircleData } from "../libs/gateways";
+import { convertCircleData } from "../libs/convertPendingData";
 
 type QandA = {
     q: string;
@@ -24,16 +26,17 @@ const useDiagnosis=(isStarted:boolean)=>{
         if(target){
             setAnswers({[target.id]:res})
         }
+        const newRequestBody = [...requestBody, { q: question, a: res }];
         setRequestBody((prev)=>{
-            if(interTime>=6){
-                console.log("requestBody",[...prev,{q:question,a:res}])
-                // requestAi([...prev,{q:question,a:res}])
-            }
-            return [...prev,{q:question,a:res}]})
+            return [...prev,{q:question,a:res}]
+        })
+        const responseToChat:Chat = {type:"text",content:res,speaker:"user"};
+        setChatList((prev)=>[...prev.slice(0,prev.length - 1),responseToChat])
         if(interTime<6){
-            const responseToChat:Chat = {type:"text",content:res,speaker:"user"};
-            setChatList((prev)=>[...prev.slice(0,prev.length - 1),responseToChat])
             setQnAInChat()
+        }
+        if(interTime>=6){
+            requestAi(newRequestBody)
         }
     }
 
@@ -84,7 +87,6 @@ const useDiagnosis=(isStarted:boolean)=>{
     const requestAi=async(requestBody:QandA[])=>{
         try{
             setChatList((prev)=>[...prev,{content:"",speaker:"ai",type:"loading"}])
-            console.log(requestBody)
             const res = await fetch(`${SUPABASE_URL}/functions/v1/diagnosis`,{
                 method: "POST",
                 headers: { "Content-Type": "application/json","Authorization": `Bearer ${SUPABASE_ANON_KEY}` },
@@ -94,12 +96,18 @@ const useDiagnosis=(isStarted:boolean)=>{
             if(!res.ok){
                 return;
             }
-            const { response,id } = await res.json()
-            console.log(id)
-            setChatList((prev)=>[...prev.slice(0,prev.length - 1),{content:response,type:"text",speaker:"ai"}])
+            const { response,id } = await res.json() as {response:string,id:string[]}
+            setChatList((prev)=>
+            [
+                ...prev.filter((item)=>item.type!=="loading"),
+                {content:response,type:"text",speaker:"ai"},
+                {content:id[0],type:"cirlce",speaker:"ai"}
+            ]
+            )
         }catch(e){
             console.error("error:",e)
-            setChatList((prev)=>[...prev.slice(0,prev.length - 1)])
+            setChatList((prev)=>prev.filter((item)=>item.type!=="loading"))
+
         }
     }
 
