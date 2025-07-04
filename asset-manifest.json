@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ryukoku-Horizon/2025-AdvancedGroup-MidTeamDev-No2/static/css/main.dab5af62.css",
+    "main.js": "/Ryukoku-Horizon/2025-AdvancedGroup-MidTeamDev-No2/static/js/main.8a466570.js",
+    "index.html": "/Ryukoku-Horizon/2025-AdvancedGroup-MidTeamDev-No2/index.html",
+    "main.dab5af62.css.map": "/Ryukoku-Horizon/2025-AdvancedGroup-MidTeamDev-No2/static/css/main.dab5af62.css.map",
+    "main.8a466570.js.map": "/Ryukoku-Horizon/2025-AdvancedGroup-MidTeamDev-No2/static/js/main.8a466570.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dab5af62.css",
+    "static/js/main.8a466570.js"
+  ]
+}
