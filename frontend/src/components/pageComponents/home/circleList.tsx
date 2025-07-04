@@ -3,17 +3,18 @@ import useCircles from "../../../hooks/useCircles";
 import CenterLoader from "../../common/loader/centerLoader";
 import SingleCircleCard from "./singleCIrcleCard";
 import { ClipLoader } from "react-spinners";
+import useScrollToBottom from "../../../hooks/useScrollToBottom";
 
 const CircleList=()=>{
     const [startLoad, setStartLoad] = useState(false);
     const listRef = useRef<HTMLElement | null>(null);
     const limit = 6
     const { circleData, loading, setOffset,hasMore,offset } = useCircles(startLoad,limit,0);
-    // useScrollToBottom(()=>{
-    //   if (hasMore && !loading && startLoad && circleData.length >= 6) {
-    //     setOffset((prev) => prev + limit);
-    //   }
-    // })
+    useScrollToBottom(()=>{
+      if (hasMore && !loading && startLoad && circleData.length >= 6) {
+        setOffset((prev) => prev + limit);
+      }
+    })
 
     useEffect(() => {
         const observer = new IntersectionObserver(
