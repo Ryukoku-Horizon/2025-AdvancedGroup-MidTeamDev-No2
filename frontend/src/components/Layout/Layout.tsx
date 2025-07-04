@@ -19,7 +19,7 @@ const Layout=({children}:Props)=>{
             </div>
             <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
             <Header />
-            <main className="h-full pt-8">
+            <main className="h-full pt-8 w-full">
                 {children}
             </main>
             <Footer />

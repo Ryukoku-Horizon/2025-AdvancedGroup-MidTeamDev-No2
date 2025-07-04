@@ -362,6 +362,10 @@
     opacity: 100%;
 }
 
+.scrollY{
+    overflow-y: auto;  
+}
+
 .box-shadow{
     box-shadow:0 10px 10px rgb(192, 192, 192);
 }

@@ -15,7 +15,8 @@ const AIDiagnosis = () => {
     return (
         <Layout>
             <div className="flex justify-center h-90p w-full">
-                <div className="diagnosis-container flex flex-col items-center my-2 px-2 pb-8 w-90p">
+                <div className="diagnosis-container flex flex-col items-center my-2 px-2 pb-8 w-90p relative"
+                style={{height:"500px"}}>
                     <PageTitle isStarted={isStarted} />
                     <InitScreen start={start} isStarted={isStarted} />
                     <ChatField isStarted={isStarted} />
