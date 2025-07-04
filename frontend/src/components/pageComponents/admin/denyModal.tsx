@@ -1,4 +1,3 @@
-import * as React from "react"
 import Modal from 'react-modal'
 import CancelButton from "../../common/Btn/cancelBtn/cancelBtn"
 import useResponse from "../../../hooks/useResponse"
