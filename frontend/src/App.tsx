@@ -16,7 +16,7 @@ import Result from './pages/result';
 
 function App() {
   return (
-    <HashRouter>
+    <HashRouter basename="/2025-AdvancedGroup-MidTeamDev-No2">
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
