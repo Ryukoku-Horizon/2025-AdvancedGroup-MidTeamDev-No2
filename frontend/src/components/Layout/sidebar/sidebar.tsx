@@ -15,6 +15,8 @@ type Props={
 const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
   const {user,loading} = useFirebaseUser();
 
+  const env = process.env.REACT_APP_URL ?? ""
+
   return (
     <Modal
       isOpen={showSidebar}
@@ -25,15 +27,15 @@ const Sidebar = ({ showSidebar, setShowSidebar }:Props) => {
       closeTimeoutMS={350}
     >
       <div style={{ marginTop: "4rem" }}>
-        <SidebarLink to={`${process.env.REACT_APP_URL}`} label='ホーム' />
-        <SidebarLink to={`${process.env.REACT_APP_URL}search`} label="検索" />
-        <SidebarLink to={`${process.env.REACT_APP_URL}ai-diagnosis`} label="サークルAI診断" />
-        <SidebarLink to={`${process.env.REACT_APP_URL}fqa`} label="よくある質問" />
+        <SidebarLink to={`${env}/`} label='ホーム' />
+        <SidebarLink to={`${env}/search`} label="検索" />
+        <SidebarLink to={`${env}/ai-diagnosis`} label="サークルAI診断" />
+        <SidebarLink to={`${env}/fqa`} label="よくある質問" />
         <CommonToggle title="サークル管理者向け">
           {!loading && <>
-            {!user && <SidebarLink to={`${process.env.REACT_APP_URL}login`} label="ログイン" />}
-            {!user && <SidebarLink to={`${process.env.REACT_APP_URL}request`} label="サークル掲載申請" />}
-            {user && <SidebarLink to={`${process.env.REACT_APP_URL}manage/${user.uid}`} label='管理ページ' />}
+            {!user && <SidebarLink to={`${env}/login`} label="ログイン" />}
+            {!user && <SidebarLink to={`${env}/request`} label="サークル掲載申請" />}
+            {user && <SidebarLink to={`${env}/manage/${user.uid}`} label='管理ページ' />}
           </>}
           {loading && <CircleLoader size={32} />}
         </CommonToggle>

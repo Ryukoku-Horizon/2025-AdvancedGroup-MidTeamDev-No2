@@ -8,11 +8,12 @@ const useRequest=()=>{
     const [errMessage,setErrMessage] = useState("");
     const [success,setSuccess] = useState<boolean | undefined>(false);
     const navigate = useNavigate()
+    const env = process.env.REACT_APP_URL ?? ""
 
     useEffect(()=>{
         if(success){
             setTimeout(()=>{
-                navigate("/comp");
+                navigate(`${env}/comp`);
             },1500)
         }
     },[success,navigate])

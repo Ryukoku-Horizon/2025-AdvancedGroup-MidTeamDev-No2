@@ -8,11 +8,12 @@ const useLogin=()=>{
     const [loading, setLoading] = useState(false);
     const { loginWithCustomToken,user } = useFirebaseUser();
     const navigate = useNavigate();
+    const env = process.env.REACT_APP_URL ?? ""
 
     useEffect(()=>{
         if(user){
             setTimeout(()=>{
-                navigate(`/manage/${user.uid}`)
+                navigate(`${env}/manage/${user.uid}`)
             },1500);
         }
     },[user,navigate])
