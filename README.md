@@ -16,7 +16,7 @@ https://ryukoku-horizon.github.io/2025-AdvancedGroup-MidTeamDev-No2/
 
 ルートディレクトリで`docker compose up`、または`docker compose up --build`を実行
 
-ブラウザで`http://localhost:8000/ryukoku-circle-hub`にアクセス
+ブラウザで`http://localhost:8000/2025-AdvancedGroup-MidTeamDev-No2`にアクセス
 
 ## 主な使用技術
 
